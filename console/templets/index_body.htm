@@ -47,7 +47,7 @@ $(function()
   <tr>
     <td>
      <div style='float:left'>
-       欢迎使用专业的PHP网站管理系统，轻松建站的首选利器 -- <?php echo $cfg_softname; ?>
+       欢迎使用<?php echo $cfg_webname; ?>管理平台！
      </div>
      <div id='' style='float:right;padding-right:8px;'>
          <!--  //保留位置（顶右）  -->
@@ -58,30 +58,15 @@ $(function()
     <td height="1" background="images/sp_bg.gif" style='padding:0px'></td>
   </tr>
 </table>
+<?php
+	if($cuserLogin->getUserType() >= 10) {
+?>
 <div id="__testEvn"></div>
+<?php
+	}
+?>
 <div id='mainmsg'>
-  <div class="column" id="column1"><!--左侧开始-->    
-        <dl class="dbox" id="item1">
-            <dt class='lside'><span class='l'><?php echo $cfg_soft_enname; ?> 更新消息</span></dt>
-            <dd>
-                <div id='updatetest'>
-                    <div id='updateinfos'>
-                        <?php
-                            echo "<div class='updatedvt'><b>您系统版本最后更新时间为：{$oktime} </b><br/>";
-                            echo " <a href='javascript:LoadUpdateInfos();' class='np coolbg'>进行在线更新</a> &nbsp; \r\n";
-                            echo " <a href='sys_repair.php' class='np coolbg'>系统错误修复</a></div>\r\n";
-                            echo "<iframe name='stafrm' src='{$offUrl}&uptime={$oktime}' frameborder='0' id='stafrm' width='98%' height='50'></iframe>";
-                        ?>
-                    </div>
-                 </div>
-            </dd>
-        </dl><!--更新消息结束-->        
-        <dl class='dbox' id="item2">
-            <dt class='lside'><span class='l'>商业授权查询</span></dt>
-            <dd>               
-                <iframe name="showauth" src="index_body.php?dopost=showauth" width="100%" frameborder="0" scrolling="no" marginwidth="10" marginheight="10" id="showauth"></iframe>                
-            </dd>
-        </dl><!--更新消息结束-->
+  <div class="column" id="column1"><!--左侧开始-->
         <dl class='dbox' id="item3">
             <dt class='lside'>
                 <div class='l'>快捷操作</div>
@@ -105,7 +90,7 @@ $(function()
                 </div>
             </dd>
 
-        </dl><!--快捷操作结束-->   
+        </dl><!--快捷操作结束-->
         <dl class="dbox" id="item4">
             <dt class='lside'><div class='l'>系统基本信息</div></dt>
             <dd class='intable'>
@@ -122,7 +107,13 @@ $(function()
                                 echo "信息采集员或其它管理员";
                             }
                         ?>
+                        <?php
+                            if($cuserLogin->getUserType() >= 10) {
+                        ?>
                         [<a href="javascript:showMore()">查看更多</a>]</td>
+                        <?php
+                            }
+                        ?>
                     </tr>
                     <tr>
                      <td colspan="2" class='nline' id="allInfoTD" style="display:none"><table width="100%" border="0" cellspacing="0" cellpadding="0" id="allInfo" style="display:none">
@@ -183,28 +174,18 @@ $(function()
             </dd>
         </dl><!--系统基本信息结束-->
         <dl class='dbox' id="item5">
-            <dt class='lside'><div class='l'>程序团队</div></dt>
+            <dt class='lside'><div class='l'>技术支持</div></dt>
             <dd class='intable'>
                 <table width="98%" class="dboxtable">
                     <tr>
-                        <td width='25%' height='36' class='nline' style="text-align:right"> 主程序研发： </td>
-                        <td class='nline' style="text-align:left"><a href="http://www.desdev.cn/team.php" target="_blank" style="color:blue">织梦团队</a></td>
-                    </tr>
-                    <tr>
-                        <td height='36' class='nline' style="text-align:right">鸣谢：</td>
-                        <td class='nline' style="text-align:left"><a href="http://www.desdev.cn/dedecms-thanks.html" target="_blank" style="color:blue">热心用户</a>、<a href="http://www.dedecms.com/thanks.html" target="_blank" style="color:blue">赞助商</a></td>
+                        <td width="25%" class='nline' style="text-align:right">开发维护：</td>
+                        <td class='nline'>东莞阳光网</td>
                     </tr>
                 </table>
             </dd>
-        </dl><!--开发团队结束-->
+        </dl>
     </div><!--左侧结束-->
     <div class="column" id="column2" ><!-- //右边的快捷消息开始 -->
-        <dl class='dbox' id="item8">
-            <dt class='lside'><div class='l'>赞助商链接(<a href="http://ad.dedecms.com/ad/" target="_blank">说明</a>)</div></dt>
-            <dd>
-                <iframe name="showad" src="index_body.php?dopost=showad" frameborder="0" width="100%" id="showad" frameborder="0" scrolling="no"  marginheight="5"></iframe>
-            </dd>
-        </dl><!--赞助商链接结束-->
         <dl class='dbox' id="item6">
             <dt class='lside'><div class='l'>信息统计</div></dt>
             <dd id='listCount'>
@@ -263,13 +244,13 @@ $(function()
     </table>
             </dd>
         </dl><!--最新文档结束-->
-        
+
     </div>
 </div>
 <br style='clear:both'/>
 <!-- //底部 -->
 <div align="center" class="footer">
-Copyright &copy; 2004-2011 <a href='http://www.dedecms.com' target='_blank'><u>DedeCMS</u></a>. 织梦科技 版权所有
+Copyright &copy; <?php echo $cfg_webname; ?>
 </div>
 
 <!--  下面是隐藏的项目  -->
