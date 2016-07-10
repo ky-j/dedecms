@@ -250,7 +250,7 @@ else if($dopost=='save')
 if($dopost=='')
 {
     $channelid = 1;
-    $issend = 1;
+    $issend = 0;
     $corank = 0;
     $reid = 0;
     $topid = 0;
