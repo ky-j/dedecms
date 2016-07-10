@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=<?php echo $cfg_soft_lang; ?>">
-<title><?php echo $cfg_webname; ?>管理平台</title>
+<title><?php echo $cfg_webname; ?></title>
 <link href="css/base.css" rel="stylesheet" type="text/css" />
 <link href="css/login.css" rel="stylesheet" type="text/css" />
 <script src="../include/js/jquery/jquery.js" language="javascript" type="text/javascript"></script>
@@ -16,24 +16,13 @@ function changeAuthCode() {
 	if ($("#vdimgck")[0]) {
 		$("#vdimgck")[0].src = "../include/vdimgck.php?tag=" + num;
 	}
-	return false;
+	return false;	
 }
 </script>
-<style>
-    #login-box {
-    	width: 300px;
-    }
-    .login-main {
-    	background: none;
-    }
-    .login-top {
-    	text-align: left;
-    }
-</style>
 </head>
 <body>
 <div id="login-box">
-   <div class="login-top"><?php echo $cfg_webname; ?>管理平台</div>
+   <div class="login-top"><a href="../index.php" target="_blank" title="返回网站主页">返回网站主页</a></div>
    <?php echo $redmsg; ?>
    <div class="login-main">
     <form name="form1" method="post" action="login.php">
@@ -60,6 +49,7 @@ function changeAuthCode() {
 	 </dl>
 	</form>
    </div>
+   <div class="login-power">Powered by<a href="http://www.dedecms.com" title="DedeCMS官网"><strong>DedeCMS<?php echo $cfg_version; ?></strong></a>&copy; 2004-2011 <a href="http://www.desdev.cn" target="_blank">DesDev</a> Inc.</div>
 </div>
 </body>
 </html>
