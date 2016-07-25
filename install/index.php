@@ -105,7 +105,7 @@ else if($step==3)
         $baseurl = 'http://'.$_SERVER['HTTP_HOST'];
     else
         $baseurl = "http://".$_SERVER['SERVER_NAME'];
-    
+
 
     $chars='abcdefghigklmnopqrstuvwxwyABCDEFGHIGKLMNOPQRSTUVWXWY0123456789';
     $rnd_cookieEncode='';
@@ -129,7 +129,7 @@ else if($step==4)
     $conn = mysql_connect($dbhost,$dbuser,$dbpwd) or die("<script>alert('数据库服务器或登录密码无效，\\n\\n无法连接数据库，请重新设定！');history.go(-1);</script>");
 
     mysql_query("CREATE DATABASE IF NOT EXISTS `".$dbname."`;",$conn);
-    
+
     mysql_select_db($dbname) or die("<script>alert('选择数据库失败，可能是你没权限，请预先创建一个数据库！');history.go(-1);</script>");
 
     //获得数据库版本信息
@@ -187,9 +187,9 @@ else if($step==4)
     {
         $sql4tmp = "ENGINE=MyISAM DEFAULT CHARSET=".$dblang;
     }
-  
+
     //创建数据表
-  
+
     $query = '';
     $fp = fopen(dirname(__FILE__).'/sql-dftables.txt','r');
     while(!feof($fp))
@@ -219,7 +219,7 @@ else if($step==4)
         }
     }
     fclose($fp);
-    
+
     //导入默认数据
     $query = '';
     $fp = fopen(dirname(__FILE__).'/sql-dfdata.txt','r');
@@ -253,11 +253,11 @@ else if($step==4)
     mysql_query($cquery,$conn);
     $cquery = "Update `{$dbprefix}sysconfig` set value='{$adminmail}' where varname='cfg_adminemail';";
     mysql_query($cquery,$conn);
-    
+
     //增加管理员帐号
     $adminquery = "INSERT INTO `{$dbprefix}admin` VALUES (1, 10, '$adminuser', '".substr(md5($adminpwd),5,20)."', 'admin', '', '', 0, '".time()."', '127.0.0.1');";
     mysql_query($adminquery,$conn);
-    
+
     //关连前台会员帐号
     $adminquery = "INSERT INTO `{$dbprefix}member` (`mid`,`mtype`,`userid`,`pwd`,`uname`,`sex`,`rank`,`money`,`email`,
                    `scores` ,`matt` ,`face`,`safequestion`,`safeanswer` ,`jointime` ,`joinip` ,`logintime` ,`loginip` )
@@ -276,7 +276,7 @@ else if($step==4)
     $adminquery = "Insert Into `{$dbprefix}member_space`(`mid` ,`pagesize` ,`matt` ,`spacename` ,`spacelogo` ,`spacestyle`, `sign` ,`spacenews`)
                 Values('1','10','0','{$adminuser}的空间','','person','',''); ";
     mysql_query($adminquery,$conn);
-	
+
 	//安装体验数据
     if($installdemo == 1)
     {
@@ -374,7 +374,7 @@ else if($step==11)
 {
 	require_once('../data/admin/config_update.php');
 	$rmurl = $updateHost."dedecms/demodata.{$s_lang}.txt";
-	
+
 	$sql_content = file_get_contents($rmurl);
 	$fp = fopen($install_demo_name,'w');
 	if(fwrite($fp,$sql_content))

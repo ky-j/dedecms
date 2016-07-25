@@ -1,12 +1,12 @@
 <?php
 $cfg_basehost = 'http://localhost';
-$cfg_cmspath = '/dede';
-$cfg_cookie_encode = 'WgS6FwF6yPqDhFiEmSgVdm5k9irtv5u';
-$cfg_indexurl = '/dede';
+$cfg_cmspath = '/dedecms';
+$cfg_cookie_encode = '27heRwFNq1pG39WcyGgLb3lQdMUh8G';
+$cfg_indexurl = '/dedecms';
 $cfg_backup_dir = 'backupdata';
 $cfg_indexname = '主页';
 $cfg_webname = '我的网站';
-$cfg_adminemail = 'admin@dedecms.com';
+$cfg_adminemail = '82697451@qq.com';
 $cfg_html_editor = 'ckeditor';
 $cfg_arcdir = '/a';
 $cfg_medias_dir = '/uploads';
