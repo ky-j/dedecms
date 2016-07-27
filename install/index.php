@@ -114,8 +114,8 @@ else if($step==3)
     for($i = 0; $i < $length; $i++) {
         $rnd_cookieEncode .= $chars[mt_rand(0, $max)];
     }
-
-    if(file_get_contents($install_demo_name)) $isdemosign = 1;
+    $isdemosign = 0;
+    if(file_exists($install_demo_name) && file_get_contents($install_demo_name)) $isdemosign = 1;
     $module_local = DEDEDATA.'/module/';
     include('./templates/step-3.html');
     exit();
@@ -130,7 +130,7 @@ else if($step==4)
 
     mysql_query("CREATE DATABASE IF NOT EXISTS `".$dbname."`;",$conn);
 
-    mysql_select_db($dbname) or die("<script>alert('选择数据库失败，可能是你没权限，请预先创建一个数据库！');history.go(-1);</script>");
+    mysql_select_db($dbname, $conn) or die("<script>alert('选择数据库失败，可能是你没权限，请预先创建一个数据库！');history.go(-1);</script>");
 
     //获得数据库版本信息
     $rs = mysql_query("SELECT VERSION();",$conn);
