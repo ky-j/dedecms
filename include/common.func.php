@@ -9,6 +9,50 @@
  */
 if(!defined('DEDEINC')) exit('dedecms');
 
+if (version_compare(PHP_VERSION, '7.0.0', '>='))
+{
+    if (!function_exists('mysql_connect') AND function_exists('mysqli_connect')) {
+        function mysql_connect($server, $username, $password)
+        {
+            return mysqli_connect($server, $username, $password);
+        }
+    }
+
+    if (!function_exists('mysql_query') AND function_exists('mysqli_query')) {
+        function mysql_query($query, $link)
+        {
+            return mysqli_query($link, $query);
+        }
+    }
+
+    if (!function_exists('mysql_select_db') AND function_exists('mysqli_select_db')) {
+        function mysql_select_db($database_name, $link)
+        {
+            return mysqli_select_db($link, $database_name);
+        }
+    }
+
+    if (!function_exists('mysql_fetch_array') AND function_exists('mysqli_fetch_array')) {
+        function mysql_fetch_array($result)
+        {
+            return mysqli_fetch_array($result);
+        }
+    }
+
+    if (!function_exists('mysql_close') AND function_exists('mysqli_close')) {
+        function mysql_close($link)
+        {
+            return mysqli_close($result);
+        }
+    }
+    if (!function_exists('split')) {
+        function split($pattern, $string){
+            return explode($pattern, $string);
+        }
+    }
+}
+
+
 /**
  *  载入小助手,系统默认载入小助手
  *  在/data/helper.inc.php中进行默认小助手初始化的设置
@@ -46,17 +90,17 @@ function helper($helpers)
 
     if (isset($_helpers[$helpers]))
     {
-        continue;
+        return;
     }
     if (file_exists(DEDEINC.'/helpers/'.$helpers.'.helper.php'))
-    { 
+    {
         include_once(DEDEINC.'/helpers/'.$helpers.'.helper.php');
         $_helpers[$helpers] = TRUE;
     }
     // 无法载入小助手
     if ( ! isset($_helpers[$helpers]))
     {
-        exit('Unable to load the requested file: helpers/'.$helpers.'.helper.php');                
+        exit('Unable to load the requested file: helpers/'.$helpers.'.helper.php');
     }
 }
 
@@ -78,14 +122,14 @@ function dede_htmlspecialchars($str) {
  */
 function RunApp($ct, $ac = '',$directory = '')
 {
-    
+
     $ct = preg_replace("/[^0-9a-z_]/i", '', $ct);
     $ac = preg_replace("/[^0-9a-z_]/i", '', $ac);
-        
+
     $ac = empty ( $ac ) ? $ac = 'index' : $ac;
 	if(!empty($directory)) $path = DEDECONTROL.'/'.$directory. '/' . $ct . '.php';
 	else $path = DEDECONTROL . '/' . $ct . '.php';
-        
+
 	if (file_exists ( $path ))
 	{
 		require $path;
@@ -109,7 +153,7 @@ function RunApp($ct, $ac = '',$directory = '')
         $instance->$action();
         unset($instance);
     } else $loaderr = TRUE;
-        
+
     if ($loaderr)
     {
         if (DEBUG_LEVEL === TRUE)
@@ -212,7 +256,7 @@ function ShowMsg($msg, $gourl, $onlymsg=0, $limittime=0)
             $gourl = 'javascript:;';
             $func .= "window.parent.document.getElementById('{$tgobj}').style.display='none';\r\n";
         }
-        
+
         $func .= "      var pgo=0;
       function JumpUrl(){
         if(pgo==0){ location='$gourl'; pgo=1; }
@@ -223,7 +267,7 @@ function ShowMsg($msg, $gourl, $onlymsg=0, $limittime=0)
         $rmsg .= "document.write(\"<div style='height:130px;font-size:10pt;background:#ffffff'><br />\");\r\n";
         $rmsg .= "document.write(\"".str_replace("\"","“",$msg)."\");\r\n";
         $rmsg .= "document.write(\"";
-        
+
         if($onlymsg==0)
         {
             if( $gourl != 'javascript:;' && $gourl != '')
