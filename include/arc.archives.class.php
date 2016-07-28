@@ -408,7 +408,7 @@ class Archives
             {
                 if($this->TotalPage > 1) {
                     $this->Fields['tmptitle'] = (empty($this->Fields['tmptitle']) ? $this->Fields['title'] : $this->Fields['tmptitle']);
-                    if($i>1) $this->Fields['title'] = $this->Fields['tmptitle']."($i)";
+                    //if($i>1) $this->Fields['title'] = $this->Fields['tmptitle']."($i)";
                 }
                 if($i>1)
                 {
@@ -971,22 +971,22 @@ class Archives
         {
             return "";
         }
-        $PageList = "<li><a>共".$totalPage."页: </a></li>";
+        $PageList = "";
         $nPage = $nowPage-1;
         $lPage = $nowPage+1;
         if($nowPage==1)
         {
-            $PageList.="<li><a href='#'>上一页</a></li>";
+            $PageList.="<span class=\"disabled\">上一页</span>";
         }
         else
         {
             if($nPage==1)
             {
-                $PageList.="<li><a href='".$this->NameFirst.".".$this->ShortName."'>上一页</a></li>";
+                $PageList.="<a href='".$this->NameFirst.".".$this->ShortName."' class=\"page-prev\">上一页</a>";
             }
             else
             {
-                $PageList.="<li><a href='".$this->NameFirst."_".$nPage.".".$this->ShortName."'>上一页</a></li>";
+                $PageList.="<a href='".$this->NameFirst."_".$nPage.".".$this->ShortName."' class=\"page-prev\">上一页</a>";
             }
         }
         for($i=1;$i<=$totalPage;$i++)
@@ -995,11 +995,11 @@ class Archives
             {
                 if($nowPage!=1)
                 {
-                    $PageList.="<li><a href='".$this->NameFirst.".".$this->ShortName."'>1</a></li>";
+                    $PageList.="<a href='".$this->NameFirst.".".$this->ShortName."'>1</a>";
                 }
                 else
                 {
-                    $PageList.="<li class=\"thisclass\"><a href='#'>1</a></li>";
+                    $PageList.="<span class=\"current\">1</span>";
                 }
             }
             else
@@ -1007,21 +1007,21 @@ class Archives
                 $n = $i;
                 if($nowPage!=$i)
                 {
-                    $PageList.="<li><a href='".$this->NameFirst."_".$i.".".$this->ShortName."'>".$n."</a></li>";
+                    $PageList.="<a href='".$this->NameFirst."_".$i.".".$this->ShortName."'>".$n."</a>";
                 }
                 else
                 {
-                    $PageList.="<li class=\"thisclass\"><a href='#'>{$n}</a></li>";
+                    $PageList.="<span class=\"current\">{$n}</span>";
                 }
             }
         }
         if($lPage <= $totalPage)
         {
-            $PageList.="<li><a href='".$this->NameFirst."_".$lPage.".".$this->ShortName."'>下一页</a></li>";
+            $PageList.="<a href='".$this->NameFirst."_".$lPage.".".$this->ShortName."' class=\"page-next\">下一页</a>";
         }
         else
         {
-            $PageList.= "<li><a href='#'>下一页</a></li>";
+            $PageList.= "<span class=\"disabled\">下一页</span>";
         }
         return $PageList;
     }
