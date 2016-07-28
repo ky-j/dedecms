@@ -78,11 +78,9 @@ else if($step==2)
     $sp_testdirs = array(
         '/',
         '/plus/*',
-        '/dede/*',
+        '/console/*',
         '/data/*',
-        '/a/*',
         '/install',
-        '/special',
         '/uploads/*'
     );
     include('./templates/step-2.html');
