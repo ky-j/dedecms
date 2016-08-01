@@ -47,12 +47,11 @@ function checkSubmit()
 	<div style="float:right;padding-right:6px;">
 		[<a href="friendlink_add.php"><u>增加链接</u></a>]
  	 	[<a href="friendlink_type.php"><u>网站类型管理</u></a>]
-  	[<a href='{dede:global name='cfg_phpurl' /}/flink.php' target='_blank'><u>友情链接预览</u></a>]
   </div>
   </td>
 </tr>
 <tr>
-   <td height="30" align="center" bgcolor="#F9FCEF"  colspan="8"> 
+   <td height="30" align="center" bgcolor="#F9FCEF"  colspan="8">
    <form action="friendlink_main.php" name="form1" method="get">
 	  <table border="0" cellspacing="0" cellpadding="3">
       <tr>
@@ -83,8 +82,8 @@ function checkSubmit()
 <tr align="center" bgcolor="#FBFCE2" height="26">
           <td width="6%">选择</td>
           <td width="23%">网站名称</td>
+          <td>网站类型</td>
           <td width="12%">网站Logo</td>
-          <td width="15%">站长Email</td>
           <td width="15%">时间</td>
           <td width="8%">状态</td>
           <td width="8%">顺序</td>
@@ -94,9 +93,17 @@ function checkSubmit()
         <tr align="center" bgcolor="#FFFFFF" height="26" onMouseMove="javascript:this.bgColor='#FCFDEE';"
         	 onMouseOut="javascript:this.bgColor='#FFFFFF';">
           <td><input type='checkbox' name='aids' value='{dede:field.id/}' class='np'></td>
-          <td><a href="{dede:field.url/}" target='_blank'>{dede:field.webname function='htmlspecialchars(@me)'/}</a></td>
+          <td><a href="{dede:field.url/}" target='_blank'>{dede:field.webname function='htmlspecialchars(@me, ENT_NOQUOTES, "gb2312")'/}</a></td>
+          <td>
+          <?php
+            $dsql->SetQuery("select * from #@__flinktype where id = '".$fields['typeid']."'");
+            $dsql->Execute();
+            while($row=$dsql->GetObject()){
+                echo $row->typename;
+            }
+          ?>
+          </td>
           <td><a href="{dede:field.url/}" target='_blank'>{dede:field.logo function="GetPic(@me)"/}</a></td>
-          <td>{dede:field.email/}</td>
           <td>{dede:field.dtime function="MyDate('Y-m-d',@me)"/}</td>
           <td>{dede:field.ischeck function="GetSta(@me)"/}</td>
           <td>{dede:field.sortrank/}</td>
