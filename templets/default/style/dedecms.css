@@ -2,17 +2,17 @@
  *	DedeCMS v5.6 Style (Default Style)
  *	dedecms.com  Author Networker  2010.02.05
  **/
- 
+
 /*---------- import ---------*/
 @import url("layout.css");
 @import url("page.css");
 
 
 /*---------- base ---------*/
-*{
+/**{
 	padding:0px;
 	margin:0px;
-}
+}*/
 html{
 	background:#FFF;
 }
@@ -132,12 +132,12 @@ input,select,button{
 	}
 .header_top .time{
 	float:left;
-	padding-left:10px;	
+	padding-left:10px;
 	}
 .header_top a.rss{
-    
+
 	}
-.header_top .toplinks{	
+.header_top .toplinks{
 	float:right;
 	text-align:right;
 }
@@ -208,7 +208,7 @@ input,select,button{
 	color:#999;
 }
 .header .welcome a{
-	margin:0px 3px;	
+	margin:0px 3px;
 }
 
 /*----- 新版导航菜单位置的样式 -------*/
@@ -237,7 +237,7 @@ input,select,button{
 	font-weight:bold;
 }
 .module .top span {
-	
+
 }
 .module .top strong {
 	cursor:pointer;
@@ -293,7 +293,7 @@ input,select,button{
 }
 #navMenu ul li {
     font:14px/1.5 "Microsoft YaHei","微软雅黑","Microsoft JhengHei","宋体";
-	float:left;	
+	float:left;
 	height: 22px;
 	margin-right: 10px;
 	margin-left: -3px;
@@ -313,7 +313,7 @@ input,select,button{
 	display: inline-block;
 	position: relative;
 }
-    
+
 #navMenu ul li span {
 	cursor:pointer;
 	display:inline-block;
@@ -466,7 +466,7 @@ input,select,button{
 	float:left;
 	color:#256DB1;
 }
-.channel-nav .sonnav span {	
+.channel-nav .sonnav span {
 	margin-right:10px;
 	float:left;
 }
@@ -498,7 +498,7 @@ input,select,button{
 	letter-spacing:2px;
 	float:right;
 	background:url(../images/ico-home.gif) 4px 10px no-repeat;
-} 
+}
 .channel-nav .back a{
 	color:#397CBE;
 }
@@ -516,7 +516,7 @@ input,select,button{
 }
 
 .infiniteCarousel .wrapper {
-  width: 640px; 
+  width: 640px;
   overflow: auto;
   height: 170px;
   margin: 0 30px;
@@ -530,7 +530,7 @@ input,select,button{
   display:block;
 }
 .infiniteCarousel .wrapper ul {
-  width: 625px; 
+  width: 625px;
   list-style-image:none;
   list-style-position:outside;
   list-style-type:none;
