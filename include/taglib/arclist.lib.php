@@ -19,7 +19,7 @@
  * @param     object  $refObj  引用对象
  * @return    string  成功后返回解析后的标签内容
  */
- 
+
 /*>>dede>>
 <name>文档列表</name>
 <type>全局标记</type>
@@ -32,7 +32,7 @@
 </demo>
 <attributes>
     <iterm>col:分多少列显示（默认为单列），5.3版中本属性可以通过多种方式进行多行显示</iterm>
-    <iterm>row:返回文档列表总数</iterm> 
+    <iterm>row:返回文档列表总数</iterm>
     <iterm>typeid:栏目ID,在列表模板和档案模板中一般不需要指定，在首页模板中允许用","分开表示多个栏目</iterm>
     <iterm>getall:在没有指定这属性的情况下,在栏目页、文章页模板,不会获取以","分开的多个栏目的下级子类</iterm>
     <iterm>titlelen:标题长度 等同于titlelength</iterm>
@@ -51,7 +51,7 @@
     <iterm>noflag:同flag，但这里是表示不包含这些属性</iterm>
     <iterm>orderway:值为 desc 或 asc ，指定排序方式是降序还是顺向排序，默认为降序</iterm>
     <iterm>subday:表示在多少天以内的文档</iterm>
-</attributes> 
+</attributes>
 >>dede>>*/
 
 function lib_arclist( &$ctag, &$refObj )
@@ -62,7 +62,7 @@ function lib_arclist( &$ctag, &$refObj )
     $tagid = '';
     $tagname = $ctag->GetTagName();
     $channelid = $ctag->GetAtt('channelid');
-    
+
     //增加对分页内容的处理
     $pagesize = $ctag->GetAtt('pagesize');
     if($pagesize == '')
@@ -194,7 +194,7 @@ function lib_arclistDone(&$refObj, &$ctag, $typeid=0, $row=10, $col=1, $titlelen
     $colWidth = ceil(100/$col);
     $tablewidth = $tablewidth."%";
     $colWidth = $colWidth."%";
-    
+
     //记录属性,以便分页样式统一调用
     $attarray = compact("row", "titlelen", 'infolen', 'imgwidth', 'imgheight', 'listtype',
      'arcid', 'channelid', 'orderby', 'orderWay', 'subday','pagesize',
@@ -219,7 +219,7 @@ function lib_arclistDone(&$refObj, &$ctag, $typeid=0, $row=10, $col=1, $titlelen
             $wmid =  isset($refObj->Fields['mid']) ? $refObj->Fields['mid'] : 0;
             $orwheres[] = " arc.mid = '$wmid' ";
         }
-        
+
         //时间限制(用于调用最近热门文章、热门评论之类)，这里的时间只能计算到天，否则缓存功能将无效
         if($subday > 0)
         {
@@ -336,18 +336,18 @@ function lib_arclistDone(&$refObj, &$ctag, $typeid=0, $row=10, $col=1, $titlelen
     else if($orderby == 'goodpost') $ordersql = " order by arc.goodpost $orderWay";
     else if($orderby == 'badpost') $ordersql = " order by arc.badpost $orderWay";
     else if($orderby == 'rand') $ordersql = "  ORDER BY rand()";
-    else $ordersql = " ORDER BY arc.sortrank $orderWay"; 
+    else $ordersql = " ORDER BY arc.sortrank $orderWay";
 
     //limit条件
     $limit = trim(preg_replace('#limit#is', '', $limit));
     if($limit!='')
-    {    
+    {
         $limitsql = " LIMIT $limit ";
         $limitarr = explode(',', $limit);
         $line = isset($limitarr[1])? $limitarr[1] : $line;
     }
     else $limitsql = " LIMIT 0,$line ";
-    
+
     $orwhere = '';
     if(isset($orwheres[0])) {
         $orwhere = join(' And ',$orwheres);
@@ -355,7 +355,7 @@ function lib_arclistDone(&$refObj, &$ctag, $typeid=0, $row=10, $col=1, $titlelen
         $orwhere = preg_replace("#And[ ]{1,}And#is", 'And ', $orwhere);
     }
     if($orwhere!='') $orwhere = " WHERE $orwhere ";
-    
+
     //获取附加表信息
     $addfield = trim($ctag->GetAtt('addfields'));
     $addfieldsSql = '';
@@ -385,7 +385,7 @@ function lib_arclistDone(&$refObj, &$ctag, $typeid=0, $row=10, $col=1, $titlelen
     $needSaveCache = true;
     //进行tagid的默认处理
     if($pagesize > 0) $tagid = AttDef($tagid,'tag'.$taghash );
-    
+
     if($idlist!='' || $GLOBALS['_arclistEnv']=='index' || $cfg_index_cache==0)
     {
         $needSaveCache = false;
@@ -414,7 +414,7 @@ function lib_arclistDone(&$refObj, &$ctag, $typeid=0, $row=10, $col=1, $titlelen
              $addfieldsSqlJoin
           WHERE arc.id in($idlist) $ordersql ";
     }
-	
+
 	// 好评差评缓存更新
 	if($cfg_digg_update > 0)
 	{
@@ -424,11 +424,11 @@ function lib_arclistDone(&$refObj, &$ctag, $typeid=0, $row=10, $col=1, $titlelen
 			$postsql = "SELECT arc.id,arc.goodpost,arc.badpost,arc.scores
 				FROM `$maintable` arc
 				$orwhere $ordersql $limitsql";
-				
+
 			if($idlist != '')
 			{
 				$postsql = "SELECT arc.id,arc.goodpost,arc.badpost,arc.scores
-					 FROM `$maintable` arc 
+					 FROM `$maintable` arc
 				  WHERE arc.id in($idlist) $ordersql ";
 			}
 			$dsql->SetQuery($query);
@@ -460,7 +460,7 @@ function lib_arclistDone(&$refObj, &$ctag, $typeid=0, $row=10, $col=1, $titlelen
 			//echo ExecTime()-$t1;
 		}
 	}
-	
+
     $dsql->SetQuery($query);
     $dsql->Execute('al');
     //$row = $dsql->GetArray("al");
@@ -473,7 +473,7 @@ function lib_arclistDone(&$refObj, &$ctag, $typeid=0, $row=10, $col=1, $titlelen
     $GLOBALS['autoindex'] = 0;
     $ids = array();
     $orderWeight = array();
-    
+
     for($i=0; $i<$line; $i++)
     {
         if($col>1) $artlist .= "<tr>\r\n";
@@ -484,7 +484,7 @@ function lib_arclistDone(&$refObj, &$ctag, $typeid=0, $row=10, $col=1, $titlelen
             {
                 $ids[] = $row['id'];
                 //处理一些特殊字段
-                $row['info'] = $row['infos'] = cn_substr($row['description'],$infolen);
+                $row['info'] = $row['infos'] = cn_substr($row['description'],$infolen)."...";
                 $row['id'] =  $row['id'];
 
                 if($row['corank'] > 0 && $row['arcrank']==0)
@@ -562,7 +562,7 @@ function lib_arclistDone(&$refObj, &$ctag, $typeid=0, $row=10, $col=1, $titlelen
             else{
                 $artlist .= '';
             }
-            
+
             // 进行判断,如果启用排序则内容输出为重新排序后的内容
             // var_dump($isweight=='y' && count($orderWeight) == $line);
             $isweight = strtolower($isweight);
@@ -570,7 +570,7 @@ function lib_arclistDone(&$refObj, &$ctag, $typeid=0, $row=10, $col=1, $titlelen
             {
                 $artlist = '';
                 $orderWeight = list_sort_by($orderWeight, 'weight', 'asc');
-                
+
                 foreach ($orderWeight as $vv) {
                    $artlist .= $vv['arclist'];
                 }
@@ -583,7 +583,7 @@ function lib_arclistDone(&$refObj, &$ctag, $typeid=0, $row=10, $col=1, $titlelen
     if($col>1) $artlist .= "    </table>\r\n";
     $dsql->FreeResult("al");
     $idsstr = join(',', $ids);
-    
+
     //分页特殊处理
     if($pagesize > 0)
     {
@@ -615,7 +615,7 @@ function lib_arclistDone(&$refObj, &$ctag, $typeid=0, $row=10, $col=1, $titlelen
         $dsql->ExecuteNoneQuery($query);
       }
     }
-    
+
     //保存ID缓存
     if($needSaveCache)
     {
@@ -659,7 +659,7 @@ function GetArclistCache($md5hash)
  *  获取自动频道ID
  *
  * @access    public
- * @param     string  $sortid 
+ * @param     string  $sortid
  * @param     string  $topid
  * @return    string
  */
