@@ -73,8 +73,8 @@ if ( ! function_exists('GetOneArchive'))
         $reArr['topid']  = $arcRow['topid'];
         $reArr['arctitle'] = $arcRow['title'];
         $reArr['arcurl'] = GetFileUrl($aid, $arcRow['typeid'], $arcRow['senddate'], $reArr['title'],
-                          $arcRow['ismake'], $arcRow['arcrank'], $arcRow['namerule'], $arcRow['typedir'], 
-                          $arcRow['money'], $arcRow['filename'], $arcRow['moresite'], $arcRow['siteurl'], 
+                          $arcRow['ismake'], $arcRow['arcrank'], $arcRow['namerule'], $arcRow['typedir'],
+                          $arcRow['money'], $arcRow['filename'], $arcRow['moresite'], $arcRow['siteurl'],
                           $arcRow['sitepath']);
         return $reArr;
 
@@ -292,5 +292,25 @@ if ( ! function_exists('InsertOneTag'))
         {
             $dsql->ExecuteNoneQuery("INSERT INTO `#@__taglist`(`tid`,`aid`,`arcrank`,`typeid` , `tag`) VALUES('$tid','$aid','$arcrank','$typeid' , '$tag'); ");
         }
+    }
+}
+
+/**
+ *  获取当前栏目的父栏目名称
+ *  {dede:field.typeid function="GetParentTypename(@me)"/}
+ *
+ * @access    public
+ * @param     int  $typeid  栏目ID
+ * @return    string
+ */
+if ( ! function_exists('GetParentTypename'))
+{
+    function GetParentTypename($typeid)
+    {
+        global $dsql ;
+        $row = $dsql->GetOne("SELECT reid FROM `#@__arctype` WHERE id = '$typeid'");
+        $reid = $row['reid'];
+        $row = $dsql->GetOne("SELECT typename FROM `#@__arctype` WHERE id = '$reid'");
+        return $row['typename'];
     }
 }
