@@ -1,0 +1,743 @@
+/*
+@name: 分页样式
+@description: 网上收集的分页样式，包含国外国内样式
+@author: 江文得(82697451@qq.com)
+*/
+
+/* (1) pager */
+/*总容器样式*/
+div.pager {
+    font-family: Tahoma;
+    font-size: 12px;
+    padding: 3px;
+    text-align: center;
+    color: #66c;
+}
+/*分页链接样式*/
+div.pager a {
+    margin: 2px;
+    padding: 2px 5px;
+    text-decoration: none;
+    color: #66c;
+    border: 1px solid #aad;
+}
+/*分页链接鼠标移过的样式*/
+div.pager a:hover {
+    color: #000;
+    border: 1px solid #009;
+    background-color: #dcdcf3;
+}
+/*当前页码的样式*/
+div.pager span.current {
+    font-weight: bold;
+    margin: 0 2px;
+    padding: 2px 5px;
+    color: #fff;
+    border: 1px solid #009;
+    background-color: #66c;
+}
+/*不可用分页链接的样式(比如第1页时的“上一页”链接)*/
+div.pager span.disabled {
+    margin: 0 2px;
+    padding: 2px 5px;
+    color: #ccc;
+    border: 1px solid #ddd;
+}
+/*跳转下拉菜单的样式*/
+div.pager select {
+    font-family: Tahoma;
+    font-size: 12px;
+    margin: 0 2px -2px 2px;
+    color: #66c;
+}
+/*跳转文本框的样式*/
+div.pager input {
+    font-family: Tahoma;
+    font-size: 12px;
+    margin: 0 2px -2px 2px;
+    padding: 2px;
+    text-align: center;
+    color: #66c;
+    border: 1px solid #ddd;
+}
+
+/* (2) digg */
+div.digg {
+    margin: 3px;
+    padding: 3px;
+    text-align: center;
+}
+
+div.digg a {
+    margin: 2px;
+    padding: 2px 5px;
+    text-decoration: none;
+    color: #009;
+    border: 1px solid #aad;
+}
+
+div.digg a:hover,
+div.digg a:active {
+    color: #000;
+    border: 1px solid #009;
+}
+
+div.digg span.current {
+    font-weight: bold;
+    margin: 2px;
+    padding: 2px 5px;
+    color: #fff;
+    border: 1px solid #009;
+    background-color: #009;
+}
+
+div.digg span.disabled {
+    margin: 2px;
+    padding: 2px 5px;
+    color: #ddd;
+    border: 1px solid #eee;
+}
+
+/* (3) yahoo */
+div.yahoo {
+    margin: 3px;
+    padding: 3px;
+    text-align: center;
+}
+
+div.yahoo a {
+    margin: 2px;
+    padding: 2px 5px;
+    text-decoration: underline;
+    color: #009;
+    border: 1px solid #fff;
+}
+
+div.yahoo a:hover,
+div.yahoo a:active {
+    color: #000;
+    border: 1px solid #009;
+}
+
+div.yahoo span.current {
+    font-weight: bold;
+    margin: 2px;
+    padding: 2px 5px;
+    color: #000;
+    border: 1px solid #fff;
+    background-color: #fff;
+}
+
+div.yahoo span.disabled {
+    margin: 2px;
+    padding: 2px 5px;
+    color: #ddd;
+    border: 1px solid #eee;
+}
+
+/* (4) meneame */
+div.meneame {
+    font-size: 80%;
+    margin: 3px;
+    padding: 3px;
+    text-align: center;
+    color: #ff6500;
+}
+
+div.meneame a {
+    margin-right: 3px;
+    padding: 5px 7px;
+    text-decoration: none;
+    color: #ff6500;
+    border: 1px solid #ff9600;
+    background-image: url(http://www.sun0769.com/jwd/images/pager/meneame.jpg);
+    background-position: 50% bottom;
+}
+
+div.meneame a:hover,
+div.meneame a:active {
+    color: #ff6500;
+    border: 1px solid #ff9600;
+    background-color: #ffc794;
+    background-image: none;
+}
+
+div.meneame span.current {
+    font-weight: bold;
+    margin-right: 3px;
+    padding: 5px 7px;
+    color: #ff6500;
+    border: 1px solid #ff6500;
+    background-color: #ffbe94;
+}
+
+div.meneame span.disabled {
+    margin-right: 3px;
+    padding: 5px 7px;
+    color: #ffe3c6;
+    border: 1px solid #ffe3c6;
+}
+
+/* (5) flickr */
+div.flickr {
+    margin: 3px;
+    padding: 3px;
+    text-align: center;
+}
+
+div.flickr a {
+    margin-right: 3px;
+    padding: 2px 6px;
+    text-decoration: none;
+    color: #0061de;
+    border: 1px solid #dedfde;
+    background-position: 50% bottom;
+}
+
+div.flickr a:hover,
+div.meneame a:active {
+    color: #fff;
+    border: 1px solid #000;
+    background-color: #0061de;
+    background-image: none;
+}
+
+div.flickr span.current {
+    font-weight: bold;
+    margin-right: 3px;
+    padding: 2px 6px;
+    color: #ff0084;
+}
+
+div.flickr span.disabled {
+    margin-right: 3px;
+    padding: 2px 6px;
+    color: #adaaad;
+}
+
+/* (6) sabrosus */
+div.sabrosus {
+    margin: 3px;
+    padding: 3px;
+    text-align: center;
+}
+
+div.sabrosus a {
+    margin-right: 2px;
+    padding: 2px 5px;
+    text-decoration: none;
+    color: #2e6ab1;
+    border: 1px solid #9aafe5;
+}
+
+div.sabrosus a:hover,
+div.sabrosus a:active {
+    color: #000;
+    border: 1px solid #2b66a5;
+    background-color: lightyellow;
+}
+
+div.sabrosus span.current {
+    font-weight: bold;
+    margin-right: 2px;
+    padding: 2px 5px;
+    color: #fff;
+    border: 1px solid navy;
+    background-color: #2e6ab1;
+}
+
+div.sabrosus span.disabled {
+    margin-right: 2px;
+    padding: 2px 6px;
+    color: #929292;
+    border: 1px solid #929292;
+}
+
+/* (7) scott */
+div.scott {
+    margin: 3px;
+    padding: 3px;
+    text-align: center;
+}
+
+div.scott a {
+    margin-right: 2px;
+    padding: 2px 5px;
+    text-decoration: none;
+    color: #88af3f;
+    border: 1px solid #ddd;
+}
+
+div.scott a:hover,
+div.scott a:active {
+    color: #638425;
+    border: 1px solid #85bd1e;
+    background-color: #f1ffd6;
+}
+
+div.scott span.current {
+    font-weight: bold;
+    margin-right: 2px;
+    padding: 2px 5px;
+    color: #fff;
+    border: 1px solid #b2e05d;
+    background-color: #b2e05d;
+}
+
+div.scott span.disabled {
+    margin-right: 2px;
+    padding: 2px 5px;
+    color: #ccc;
+    border: 1px solid #f3f3f3;
+}
+
+/* (8) black2 */
+div.black2 {
+    margin: 3px;
+    padding: 7px;
+    text-align: center;
+}
+
+div.black2 a {
+    margin: 2px;
+    padding: 2px 5px;
+    text-decoration: none;
+    color: #000;
+    border: 1px solid #000;
+}
+
+div.black2 a:hover,
+div.black2 a:active {
+    color: #fff;
+    border: 1px solid #000;
+    background-color: #000;
+}
+
+div.black2 span.current {
+    font-weight: bold;
+    margin: 2px;
+    padding: 2px 5px;
+    color: #fff;
+    border: 1px solid #000;
+    background-color: #000;
+}
+
+div.black2 span.disabled {
+    margin: 2px;
+    padding: 2px 5px;
+    color: #ddd;
+    border: 1px solid #eee;
+}
+
+/* (9) jogger */
+div.jogger {
+    font-family: 'lucida sans unicode', 'lucida grande', 'lucidagrande', 'lucida sans', 'geneva', 'verdana', 'sans-serif';
+    margin: 7px;
+    padding: 2px;
+    text-align: center;
+}
+
+div.jogger a {
+    margin: 2px;
+    padding: .5em .64em .43em .64em;
+    text-decoration: none;
+    color: #fff;
+    background-color: #ee4e4e;
+}
+
+div.jogger a:hover,
+div.jogger a:active {
+    margin: 2px;
+    padding: .5em .64em .43em .64em;
+    color: #fff;
+    background-color: #de1818;
+}
+
+div.jogger span.current {
+    margin: 2px;
+    padding: .5em .64em .43em .64em;
+    color: #6d643c;
+    background-color: #f6efcc;
+}
+
+div.jogger span.disabled {
+    display: none;
+}
+
+/* (10) megas512 */
+div.megas512 {
+    margin: 3px;
+    padding: 3px;
+    text-align: center;
+}
+
+div.megas512 a {
+    margin-right: 3px;
+    padding: 2px 6px;
+    text-decoration: none;
+    color: #99210b;
+    border: 1px solid #dedfde;
+}
+
+div.megas512 a:hover,
+div.megas512 a:active {
+    color: #fff;
+    border: 1px solid #000;
+    background-color: #777;
+}
+
+div.megas512 span.current {
+    font-weight: bold;
+    margin-right: 3px;
+    padding: 2px 6px;
+    color: #99210b;
+}
+
+div.megas512 span.disabled {
+    margin-right: 3px;
+    padding: 2px 6px;
+    color: #adaaad;
+}
+
+/* (11) technorati */
+div.technorati {
+    margin: 3px;
+    padding: 3px;
+    text-align: center;
+}
+
+div.technorati a {
+    font-weight: bold;
+    margin-right: 3px;
+    padding: 2px 6px;
+    text-decoration: none;
+    color: #4261de;
+    border: 1px solid #ccc;
+}
+
+div.technorati a:hover,
+div.technorati a:active {
+    color: #fff;
+    background-color: #4261df;
+}
+
+div.technorati span.current {
+    font-weight: bold;
+    margin-right: 3px;
+    padding: 2px 6px;
+    color: #000;
+}
+
+div.technorati span.disabled {
+    display: none;
+}
+
+/* (12) msdn */
+div.msdn {
+    font-family: 'verdana', 'tahoma', 'arial', 'helvetica', 'sans-serif';
+    font-size: 13px;
+    margin: 3px;
+    padding: 4px 6px 4px 0;
+    text-align: center;
+    color: #313031;
+    background-color: #fff;
+}
+
+div.msdn a {
+    margin: 0 3px;
+    padding: 5px 6px 4px 5px;
+    text-decoration: none;
+    color: #0030ce;
+    border: 1px solid #b7d8ee;
+}
+
+div.msdn a:hover,
+div.msdn a:active {
+    color: #0066a7;
+    border: 1px solid #b7d8ee;
+    background-color: #d2eaf6;
+}
+
+div.msdn span.current {
+    font-weight: bold;
+    margin: 0 3px;
+    padding: 5px 6px 4px 5px;
+    color: #444;
+    border: 1px solid #b7d8ee;
+    background-color: #d2eaf6;
+}
+
+div.msdn span.disabled {
+    display: none;
+}
+
+/* (13) badoo */
+div.badoo {
+    font-family: 'arial', 'helvetica', 'sans-serif';
+    font-size: 13px;
+    padding: 10px 0;
+    text-align: center;
+    color: #48b9ef;
+    background-color: #fff;
+}
+
+div.badoo a {
+    margin: 0 2px;
+    padding: 2px 5px;
+    text-decoration: none;
+    color: #48b9ef;
+    border: 2px solid #f0f0f0;
+}
+
+div.badoo a:hover,
+div.badoo a:active {
+    color: #ff5a00;
+    border: 2px solid #ff5a00;
+}
+
+div.badoo span.current {
+    font-weight: bold;
+    padding: 2px 5px;
+    color: #fff;
+    border: 2px solid #ff5a00;
+    background-color: #ff6c16;
+}
+
+div.badoo span.disabled {
+    display: none;
+}
+
+/* (14) manu */
+.manu {
+    margin: 3px;
+    padding: 3px;
+    text-align: center;
+}
+
+.manu a {
+    margin: 2px;
+    padding: 2px 5px;
+    text-decoration: none;
+    color: #036cb4;
+    border: 1px solid #eee;
+}
+
+.manu a:hover,
+.manu a:active {
+    color: #666;
+    border: 1px solid #999;
+}
+
+.manu .current {
+    font-weight: bold;
+    margin: 2px;
+    padding: 2px 5px;
+    color: #fff;
+    border: 1px solid #036cb4;
+    background-color: #036cb4;
+}
+
+.manu .disabled {
+    margin: 2px;
+    padding: 2px 5px;
+    color: #ddd;
+    border: 1px solid #eee;
+}
+
+/* (15) green-black */
+div.green-black {
+    margin: 3px;
+    padding: 3px;
+    text-align: center;
+}
+
+div.green-black a {
+    margin-right: 2px;
+    padding: 2px 5px;
+    text-decoration: none;
+    color: #fff;
+    border: 1px solid #2c2c2c;
+    background: url(http://www.sun0769.com/jwd/images/pager/black.gif) #2c2c2c;
+}
+
+div.green-black a:hover,
+div.green-black a:active {
+    color: #fff;
+    border: 1px solid #aad83e;
+    background: url(http://www.sun0769.com/jwd/images/pager/green.gif) #aad83e;
+}
+
+div.green-black span.current {
+    font-weight: bold;
+    margin-right: 2px;
+    padding: 2px 5px;
+    color: #fff;
+    border: 1px solid #aad83e;
+    background: url(http://www.sun0769.com/jwd/images/pager/green.gif) #aad83e;
+}
+
+div.green-black span.disabled {
+    margin-right: 2px;
+    padding: 2px 5px;
+    color: #ccc;
+    border: 1px solid #f3f3f3;
+}
+
+/* (16) viciao */
+div.viciao {
+    margin: 3px;
+    padding: 3px;
+    text-align: center;
+}
+
+div.viciao a {
+    margin-right: 2px;
+    padding: 2px 5px;
+    text-decoration: none;
+    color: #000;
+    border: 1px solid #8db5d7;
+}
+
+div.viciao a:hover,
+div.viciao a:active {
+    border: 1px solid red;
+}
+
+div.viciao span.current {
+    font-weight: bold;
+    margin-right: 2px;
+    padding: 2px 5px;
+    color: #000;
+    border: 1px solid #e89954;
+    background-color: #ffca7d;
+}
+
+div.viciao span.disabled {
+    margin-right: 2px;
+    padding: 2px 5px;
+    color: #ccc;
+    border: 1px solid #ccc;
+}
+
+/* (17) yahoo2 */
+div.yahoo2 {
+    font-family: 'tahoma', 'helvetica', 'sans-serif';
+    font-size: .85em;
+    margin: 3px;
+    padding: 3px;
+    text-align: center;
+}
+
+div.yahoo2 a {
+    margin-right: 3px;
+    padding: 2px 8px;
+    text-decoration: none;
+    color: #0061de;
+    border: 1px solid #ccdbe4;
+}
+
+div.yahoo2 a:hover,
+div.yahoo2 a:active {
+    color: #fff;
+    border: 1px solid #2b55af;
+    background-color: #3666d4;
+}
+
+div.yahoo2 span.current {
+    font-weight: bold;
+    margin-right: 3px;
+    padding: 2px 6px;
+    color: #000;
+}
+
+div.yahoo2 span.disabled {
+    display: none;
+}
+
+/* (18) iqiyi */
+div.iqiyi {
+    font-size: 0;
+    zoom: normal;
+    height: 30px;
+    padding: 20px 0;
+    text-align: center;
+}
+
+div.iqiyi a,
+div.iqiyi span {
+    font-family: '微软雅黑';
+    font-size: 14px;
+    line-height: 27px;
+    display: inline-block;
+    min-width: 33px;
+    height: 28px;
+    margin: 0 5px;
+    vertical-align: middle;
+    text-decoration: none;
+    color: #333;
+    border: 1px solid #e3e3e3;
+    border-radius: 2px;
+    background: #fff;
+
+    _width: 33px;
+}
+
+div.iqiyi a:hover,
+div.iqiyi a:active {
+    color: #333;
+    background: #f2f2f2;
+}
+
+div.iqiyi span.current {
+    color: #fff;
+    border: 1px solid #5f9000;
+    background: #699e00;
+}
+
+div.iqiyi span.disabled {
+    width: 58px;
+    color: #999;
+}
+
+/* (19) imooc */
+div.imooc {
+    clear: both;
+    overflow: hidden;
+    margin: 25px 0 auto;
+    text-align: center;
+}
+
+div.imooc a,
+div.imooc span {
+    font-family: '微软雅黑';
+    font-size: 14px;
+    line-height: 30px;
+    display: inline-block;
+    min-width: 20px;
+    height: 29px;
+    margin: 0 5px;
+    padding: 0 5px;
+    -webkit-transition: border-color .2s;
+    -moz-transition: border-color .2s;
+    transition: border-color .2s;
+    text-align: center;
+    text-decoration: none;
+    color: #787d82;
+    border-bottom: 1px solid transparent;
+}
+
+div.imooc a:hover {
+    text-decoration: none;
+    color: #c00;
+    border-color: #c00;
+}
+
+div.imooc span.current {
+    color: #fff;
+    border-color: transparent;
+    background: #c00;
+}
+
+div.imooc span.disabled {
+    color: #c8cdd2;
+}
