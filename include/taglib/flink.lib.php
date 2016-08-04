@@ -121,7 +121,7 @@ EOT;
         }
         else if($type=='image')
         {
-            $link = "<a href='".$dbrow->url."' target='_blank'><img src='".$dbrow->logo."' width='88' height='31' border='0'></a> ";
+            $link = "<a href='".$dbrow->url."' title='".$dbrow->webname."' target='_blank'><img src='".$dbrow->logo."' alt='".$dbrow->webname."' border='0'></a> ";
         }
         else
         {
@@ -131,7 +131,7 @@ EOT;
             }
             else
             {
-                $link = "<a href='".$dbrow->url."' target='_blank'><img src='".$dbrow->logo."' width='88' height='31' border='0'></a> ";
+                $link = "<a href='".$dbrow->url."' title='".$dbrow->webname."' target='_blank'><img src='".$dbrow->logo."' alt='".$dbrow->webname."' border='0'></a> ";
             }
         }
         $rbtext = preg_replace("/\[field:url([\/\s]{0,})\]/isU", $row['url'], $innertext);
