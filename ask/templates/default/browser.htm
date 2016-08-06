@@ -1,0 +1,109 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=<?php echo $cfg_soft_lang;?>" />
+<title><?php echo $toptypeinfo['name']?>-<?php echo $cfg_ask_sitename;?></title>
+<link href="static/style/service.css" rel="stylesheet" type="text/css" media="screen" />
+</head>
+<body>
+<div id="wrap">
+  <?php include(DEDEASK."/templates/default/header.htm"); ?>
+  <div class="subnav"><span class="fl place"><?php echo $nav?></span></div>
+  <div id="main">
+    <div class="fl col1 mt10">
+      <div class="classes">
+        <div class="classes_top">
+          <span class="fl"><?php echo $toptypeinfo['name']?></span>
+        </div>
+        <?php if($tid || $tid2){?>
+        <div class="classes_bg">
+          <ul>
+			<?php
+            foreach($subtypeinfos as $subtypeinfo)
+            {
+                if($tid2 == $subtypeinfo['id'])
+                {
+                    echo '<li>'.$subtypeinfo['name'].'('.$subtypeinfo['asknum'].')</li>';
+                }else{
+                    if($cfg_ask_rewrite == 'Y') $url= 't'.$subtypeinfo['id'];
+            		else $url='?ct=browser&tid2='.$subtypeinfo['id'];
+                    echo '<li><a href="'.$url.'">'.$subtypeinfo['name'].'</a>('.$subtypeinfo['asknum'].')</li>';
+                }
+            }
+			?>
+          </ul>
+        </div>
+        <?php }?>
+        <div class="classes_bottom"></div>
+      </div>
+      <div class="list_box mt10">
+      <?php if($tid || $tid2 || $appname){?>
+        <div class="list_tab">
+         <ul>
+           <li <?php echo $all[2];?>><a href="?ct=browser&<?php echo $tidstr.$mulappname;?>&lm=2">等待解决</a></li>
+           <li <?php echo $all[3];?>><a href="?ct=browser&<?php echo $tidstr.$mulappname;?>&lm=3">已解决</a></li>
+           <li <?php echo $all[4];?>><a href="?ct=browser&<?php echo $tidstr.$mulappname;?>&lm=4">高悬赏</a></li>
+           <li <?php echo $all[5];?>><a href="?ct=browser&<?php echo $tidstr.$mulappname;?>&lm=5">零回答</a></li>
+           <li <?php echo $all[6];?>><a href="?ct=browser&<?php echo $tidstr.$mulappname;?>&lm=6">快到期</a></li>
+           <li <?php echo $all[0];?>><a href="?ct=browser&<?php echo $tidstr;?>">全部查看</a></li>
+         </ul>
+        </div>
+        <?php }?>
+        <div class="list_show">
+          <table width="100%">
+            <thead>
+              <tr>
+                <td>标题</td>
+                <td>悬赏</td>
+                <td>状态</td>
+                <td>回复数</td>
+                <td>时间</td>
+              </tr>
+            </thead>
+            <tbody>
+            <?php
+            foreach($asks as $ask)
+            {
+             	if($cfg_ask_rewrite == 'Y') $url= 'tid-'.$ask['tid'].'.html';
+                else $url='?ct=browser&tid='.$ask['tid'];
+                $typedata = ' <a href="'.$url.'">'.$ask['tidname'].'</a>';
+                if($ask['tid2'] != 0)
+                {
+                	if($cfg_ask_rewrite == 'Y') $url= 'tid2-'.$ask['tid'].'.html';
+                	else $url='?ct=browser&tid2='.$ask['tid'];
+                    $typedata = ' <a href="'.$url.'">">'.$ask['tid2name']."</a>";
+                }
+            ?>
+              <tr>
+                <td class="pl15" width="440"><a href="<?php echo $ask['qurl']?>"><?php echo cn_substr($ask['title'],99);?></a></td>
+                <td><?php echo $ask['reward']?></td>
+                <td><img src="static/images/<?php echo $ask['status']?>" height="19" width="44" /></td>
+                <td><?php echo $ask['replies']?></td>
+                <td><?php echo MyDate('Y-m-d',$ask['dateline']);?></td>
+              </tr>
+            <?php }?>
+            </tbody>
+          </table>
+          <?php echo $multipage;?>
+        </div>
+      </div>
+    </div>
+    <div class="fr col2">
+      <div class="bor1 rank bg1 mt10">
+        <h3>总积分排行</h3>
+        <ul>
+          <?php
+             if($memberlists != ""){
+                foreach($memberlists as $key => $v)
+                {
+             ?>
+          <li><a href="?ct=myask&ac=view&mid=<?php echo $v['mid'];?>" target="_blank"><?php echo $v['userid'];?></a><span class="ico5"><?php echo $v['scores'];?></span></li>
+          <?php }}?>
+        </ul>
+      </div>
+    </div>
+  </div><!--main end-->
+  <?php include(DEDEASK."/templates/default/footer.htm"); ?>
+</div>
+</body>
+</html>

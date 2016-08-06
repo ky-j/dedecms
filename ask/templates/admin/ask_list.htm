@@ -1,0 +1,129 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=<?php echo $cfg_soft_lang;?>">
+<title>问题管理</title>
+<link href="static/style/admin.css" rel="stylesheet" type="text/css" />
+<script language='javascript'>
+	function DelOld()
+	{
+		if(window.confirm("你确实要删除选定的记录么？"))
+		{
+			document.lurdform.ac.value = 'delete';
+			document.lurdform.submit();
+		}
+	}
+	function CheckOld()
+	{
+		if(window.confirm("你确实要审核选定的记录么?"))
+		{
+			document.lurdform.ac.value = 'check';
+			document.lurdform.submit();
+		}
+	}
+	function GigestOld()
+	{
+		if(window.confirm("你确实要推荐选定的记录么?"))
+		{
+			document.lurdform.ac.value = 'digest';
+			document.lurdform.submit();
+		}
+	}
+	function AllSel(ntype)
+	{
+		var f = document.lurdform;
+		for(var i=0; i < f.elements.length; i++)
+		{
+			if(f.elements[i].type=='checkbox') {
+				if(ntype==1) f.elements[i].checked = true;
+				else if(ntype==0) f.elements[i].checked = false;
+				else f.elements[i].checked = !f.elements[i].checked;
+			}
+		}
+	}
+</script>
+</head>
+<body>
+	<div class="bodytitle">
+	<div class="bodytitleleft"></div>
+	<div class="bodytitletxt" style="padding-left:10px;"><b>问答模块</b> -- 提问管理</div>
+</div>
+    <tr>
+<td align='center' valign='top'><table width="100%" border="0" cellpadding="0" cellspacing="0">
+<tr bgcolor="#FFFFFF"><td height="4"></td></tr>
+</table>
+<table width="98%" border="0" cellpadding="1" cellspacing="1" align="center" class="tbtitle" style="background:#cfcfcf;">
+<tr>
+<td height="26" colspan="8" align="left" bgcolor="#EDF9D5" background="static/images/tbg.gif" style="padding-left:10px;">
+<b>问题列表 &nbsp; <a href="admin.php?ct=issue&status=-1">未审核</a> | <a href="admin.php?ct=issue&status=1">已解决</a> | <a href="admin.php?ct=issue&status=0">待解决</a> | <a href="admin.php?ct=issue&status=2">已关闭</a> | <a href="admin.php?ct=issue&status=3">已过期</a></b>
+</td>
+</tr>
+<form name="lurdform" action="{dede:server name='PHP_SELF' /}" method="post">
+<input type='hidden' name='ct' value='{dede:global.ct /}' />
+<input type='hidden' name='ac' value='listenall' />
+<input type='hidden' name='bc' value='' />
+<input type='hidden' name='pageno' value='{dede:global.pageno /}' />
+<tr height="25" align="center" bgcolor="#FBFCE2">
+  <td  width="6%" align="center">选择</td>
+  <td width="4%" align="center">ID</td>
+  <td width="28%" align="center">问题</td>
+  <td width="10%" align="center">提问时间</td>
+  <td width="10%" align="center">所属大分类</td>
+  <td width="10%" align="center">所属小分类</td>
+  <td width="8%" align="center">回答数</td>
+  <td width="6%" align="center">问题状态</td>
+</tr>
+{dede:datalist}
+<?php
+	if($fields['status'] == 0){
+		$fields['status'] = '待解决';
+	}else if($fields['status'] == 1){
+		$fields['status'] = '已解决';
+	}else if($fields['status'] == 2 ){
+		$fields['status'] = '已关闭';
+	}else if($fields['status'] == 3){
+		$fields['status'] = '已过期';
+	}else if($fields['status']<0){
+		$fields['status'] = '未审核';
+	}
+    $tid2url = "";
+    if(empty($status)){
+    	$tidurl = "admin.php?tid=".$fields['tid'];
+        if($fields['tid2']) $tid2url = "admin.php?tid2=".$fields['tid2'];
+    }else{
+   		$tidurl = "admin.php?status=".$status."&tid=".$fields['tid'];
+        if($fields['tid2']) $tid2url = "admin.php?status=".$status."&tid2=".$fields['tid2'];
+    }
+?>
+<tr align='center' bgcolor="#FFFFFF"  onMouseMove="javascript:this.bgColor='#FCFDEE';" onMouseOut="javascript:this.bgColor='#FFFFFF';" height="22" >
+<td><input type="checkbox" name="id[]" value="{dede:field name='id' /}" /></td>
+<td><?php echo $fields['id']; ?></td>
+<td align='left'><?php echo $fields['digest']==1? '<font color="red">[荐]</font>' : ''; ?><a href="index.php?ct=question&askaid=<?php echo $fields['id']; ?>" target="_blank"><?php echo $fields['title']; ?></a></td>
+<td><?php echo GetDateTimeMk($fields['dateline']); ?></td>
+<td><a href="<?php echo $tidurl;?>"><?php echo $fields['tidname']; ?></a> </td>
+<td><a href="<?php echo $tid2url;?>"><?php echo $fields['tid2name']; ?></a></td>
+<td><a href="?ct=answer&askid=<?php echo $fields['id']; ?>"><?php echo $fields['replies']; ?></a></td>
+<td><?php echo $fields['status']; ?></td>
+</tr>
+{/dede:datalist}
+</form>
+<tr bgcolor="#ffffff">
+<td height="30" colspan="8" align="left">
+&nbsp;
+<a href="javascript:AllSel(1)" class="coolbg">全选</a>
+<a href="javascript:AllSel(0)" class="coolbg">取消</a>
+<a href="javascript:GigestOld()" class="coolbg">推荐</a>
+<a href="javascript:CheckOld()" class="coolbg">审核</a>
+<a href="javascript:DelOld()" class="coolbg">删除</a>
+</td>
+</tr>
+<tr align="right" bgcolor="#F9FCEF">
+<td height="20" colspan="8" align="center">
+{dede:pagelist listsize='5' listitem='info,index,end,pre,next,pageno,form' /}
+</td>
+</tr>
+</table>
+</td>
+</tr>
+</body>
+</html>

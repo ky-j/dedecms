@@ -1,0 +1,43 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=<?php echo $cfg_soft_lang;?>" />
+<link href="static/style/service.css" rel="stylesheet" type="text/css" />
+<title>提高悬赏 - <?php echo $cfg_ask_sitename;?></title>
+<script language="javascript">
+function checkform(theform,own) {
+	if(theform.upreward.value > own) {
+		alert("提高悬赏的积分不能大于你拥有的积分，请重新设置悬赏积分");
+		return false;
+	}
+}
+</script>
+<body>
+<div style="width:300px;padding:30px 0px 0px 0px;margin-left:50px">
+  <form method="post" name="answer" action="?ct=question&ac=upreward&amp;askaid=<?php echo $askaid; ?>" onsubmit="return checkform(this,<?php echo $cfg_ml->M_Scores; ?>);">
+    <input type="hidden" name="step" value="2" />
+    <b>提高悬赏：</b>
+    <div style="height:80px;" class="f14"> 
+    <p style="height: 30px;">
+    在目前的悬赏分为<?php echo $question['reward'];?>
+    </p>
+    <p style="height: 30px;">
+    再增加悬赏分：
+      <select name="upreward">
+        <option value=5>5</option>
+        <option value=10>10</option>
+        <option value=15>15</option>
+        <option value=20>20</option>
+        <option value=30>30</option>
+        <option value=50>50</option>
+        <option value=80>80</option>
+        <option value=100>100</option>
+      </select>
+      (<font color=red>您目前的积分：<?php echo $cfg_ml->M_Scores; ?></font>)
+      </p>
+    </div>
+    <button type="submit" class="present">确 定</button>
+  </form>
+</div>
+</body>
+</html>

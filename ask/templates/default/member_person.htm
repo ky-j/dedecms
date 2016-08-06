@@ -1,0 +1,82 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=<?php echo $cfg_soft_lang;?>" />
+<title>个人信息</title>
+<link href="<?php echo $cfg_ask_basehost;?>/member/templets/style/index.css" rel="stylesheet" type="text/css" />
+<script language="javascript" type="text/javascript" src="<?php echo $cfg_ask_basehost;?>/images/js/j.js"></script>
+<script language="javascript" type="text/javascript" src="<?php echo $cfg_ask_basehost;?>/member/js/table_function.js"></script>
+<script language="javascript" type="text/javascript" src="static/js/feed.js"></script>
+</head>
+<body>
+<div id="main">
+  <?php include(DEDEASK."/templates/default/head.htm"); ?>
+  <div id="content" class="w960 clearfix">
+  <?php include(DEDEASK."/templates/default/menu.php"); ?>
+  <div class="755">
+    <div class="main-wrap">
+      <div class="sns-avatar">
+        <dt>
+          <div class="s120"><a href="/member/index.php?uid=<?php echo $row['userid']; ?>"><img src="<?php echo $row['face']; ?>" width="100" height="100" alt="他（她）的形象"/></a></div>
+        </dt>
+        <dd class="av-index">
+          <ul>
+            <li class="name"><?php echo $row['userid']; ?></li>
+            <?php
+             if(is_array($moodmsg)){
+            ?>
+            <li class="other" id="moodcontent"><?php echo $moodmsg['msg'];?></li>
+            <?php
+              } else {
+            ?>
+             <li class="other" id="moodcontent">还没有个性签名</li>
+             <?php
+             }
+             ?>
+          </ul>
+          <div class="msg">
+            <p><span>提问数: <em> <a href="#" title="提问数">{dede:var.asknum/}</a></em></span><span> 回答数: <em> <a href="#" title="回答数">{dede:var.answernum/}</a></em></span><span> 采纳率: <em> <a href="#" title="采纳率">{dede:var.adoptrate/}%</a></em> </span>
+</p>
+          </div>
+        </dd>
+      </div>
+      <div id="sns-feeds" class="clr">
+          <div class="indexTab">
+            <ul>
+              <li id="answer" class="thisTab"><a href="javascript:void(0)">最新回答</a></li>
+              <li id="ask"><a href="javascript:void(0)">最新提问</a></li>
+            </ul>
+          </div>
+        <div class="sns-box" id="FeedText"></div>
+        <input type="hidden" name="mid" id="mid" value="<?php echo $row['mid']; ?>">
+      </div>
+    </div>
+    <div class="col-extra">
+      <div class="sns-box">
+        <div class="hd">
+          <h3>其他信息</h3>
+        </div>
+        <div class="sns-avatar-m">
+          <dl class="statistics">
+          	<dt>匿称：</dt>
+            <dd><?php echo $row['uname']; ?></dd>
+          	<dt>积分：</dt>
+            <dd><?php echo $row['scores']; ?></dd>
+            <dt>性别：</dt>
+            <dd><?php echo empty($row['sex'])? '保密' : $row['sex']; ?></dd>
+            <dt>E-Mail：</dt>
+            <dd><?php echo $row['email']; ?>&nbsp;</dd>
+            <dt>注册时间：</dt>
+            <dd><?php echo MyDate('Y-m-d',$row['jointime']);?></dd>
+            <dt>最后登录：</dt>
+            <dd><?php echo MyDate('Y-m-d',$row['logintime']);?></dd>
+          </dl>
+        </div>
+      </div>
+      <div class="clr"></div>
+    </div>
+  </div>
+</div>
+</div>
+</body>
+</html>

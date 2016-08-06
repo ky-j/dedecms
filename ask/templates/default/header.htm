@@ -1,0 +1,25 @@
+<div id="header">
+    <div class="top">
+    <?php if($cfg_ml->M_ID){?>
+    <b><?php echo $cfg_ml->M_LoginID;?></b>,您好 欢迎来到问答中心 [<a href="<?php echo $cfg_ask_basehost;?>/member" title="会员中心">会员中心</a>] [<a href="?ct=myask" title="我的问题">我的问题</a>] <a href="<?php echo $cfg_ask_basehost;?>/member/index_do.php?fmdo=login&dopost=exit">退出</a>
+    <?php }else{ ?>
+      您好，请您先 <a href="<?php echo $cfg_ask_basehost;?>/member/login.php?gourl=<?php echo $cfg_ask_curl;?>">登陆</a> 或者 <a href="../member/reg_new.php">注册</a>
+    <?php }?>
+    </div>
+    <div class="fl logo"><a href="./" title="客服问答中心"><img src="static/images/logo.jpg" height="36" width="338" alt="客服问答中心"/></a></div>
+    <div class="fr search">
+      <form action="?ct=search" method="post" name='search'>
+        <input name="q" type="text" class="s_txt" value="<?php echo empty($q)? "" : $q;?>"/><input name="" type="submit" class="s_btn" value="搜答案" />
+        <a href="?ct=question&ac=ask" title="我要提问"><img src="static/images/question.jpg" height="37" width="73" alt="我要提问"/></a>
+      </form>
+    </div>
+    <div class="clr"></div>
+    <div class="nav">      
+      <ul class="fl">
+        <li><a href="./" title="问答首页">问答首页</a></li>
+        <li><a href="./?ct=type" title="全部分类">全部分类</a></li>
+        <li><a href="./?ct=browser&lm=1" title="精彩推荐">精彩推荐</a></li>
+      </ul>                                
+    </div>
+</div>
+<!--header end-->

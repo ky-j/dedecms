@@ -1,0 +1,71 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=<?php echo $cfg_soft_lang;?>" />
+<title><?php echo $navtitle;?> - <?php echo $cfg_ask_sitename;?></title>
+<link href="static/style/service.css" rel="stylesheet" type="text/css" media="screen" />
+<script type="text/javascript">
+function ShowMore(own)
+{
+	if(own == 1){
+		document.getElementById('isshow').style.display = '';
+	}else{
+		document.getElementById('isshow').style.display = 'none';
+	}
+}
+</script>
+</head>
+<body>
+<div id="wrap">
+  <?php include(DEDEASK."/templates/default/header.htm"); ?>
+  <div class="subnav"><span class="fl place"><?php echo $nav?></span></div>
+  <div id="main">
+  	<form action="?ct=question&ac=edit_save" method="post" name="ask">
+	<input type="hidden" name="askaid" value="<?php echo $askaid; ?>" />
+    <div class="post_box bor1 mt10">
+      <h2>正在修改问题: <?php echo $question['title'];?></h2>
+      <div class="mt10 post_content">
+        <div class="post_step3">
+			<dl>
+				<dt>问题名称：</dt>
+				<dd>
+             	<input name="title" type="text" id="title" class="post_txt2" value="<?php echo $question['title'];?>"/>
+				</dd>
+				<dd>控制在6到30个字之间。(提出问题后请关注答案，并在有效期<?php echo $cfg_ask_expiredtime;?>天内结束问题)</dd>
+			</dl>
+			<dl>
+                <dt>问题描述：</dt>
+                <dd>
+                  <?php GetFck("content",$question['content'],400);?>
+                </dd>
+                <dd>问题说明越详细，回答也会越准确！</dd>
+			</dl>
+            <?php if($gdfaq_ask == 'Y'){
+            	$faqkey = array_rand($safefaqs);
+            ?>
+            <dl>
+            	<dt>验证问题：</dt>
+           		<dd><span style="line-height:29px"><?php echo $safefaqs[$faqkey]['question'];?></span> (答案:<?php echo $safefaqs[$faqkey]['answer'];?>) 
+                <input name="safeanswer" type="text" id="safeanswer" class="post_txt3"/> 
+                <input type="hidden" name="faqkey" value="<?php echo $faqkey;?>" />
+                </dd>
+            </dl>
+            <?php }if(preg_match("/7/",$safe_gdopen)){?>
+         	<dl>
+                <dt>验证码：</dt>
+                <dd>
+                <input name="vdcode" type="text" id="vdcode" maxlength="100" class="post_txt3" style='text-transform:uppercase;' />
+                <img src="<?php echo $cfg_ask_basehost;?>/include/vdimgck.php" alt="看不清？点击更换" align="absmiddle" style="cursor:pointer" onclick="this.src=this.src+'?'" /></p>
+                </dd>
+        	</dl>
+      		<?php }?>
+        </div>
+      </div>
+      <div><input  name="submit" type="submit"  value="" class="ml165 mt10 post_btn1"/></div>   
+    </div>
+    </form>
+  </div><!--main end-->
+  <?php include(DEDEASK."/templates/default/footer.htm"); ?>
+</div>
+</body>
+</html>

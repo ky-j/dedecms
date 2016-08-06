@@ -1,0 +1,56 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=<?php echo $cfg_soft_lang;?>" />
+<title>全部分类-<?php echo $cfg_ask_sitename;?></title>
+<link href="static/style/service.css" rel="stylesheet" type="text/css" media="screen" />
+</head>
+<body>
+<div id="wrap">
+  <?php include(DEDEASK."/templates/default/header.htm"); ?>
+  <div class="subnav"><span class="fl place"><?php echo $nav?></span></div>
+  <div id="main">
+    <div class="fl col1">
+    <?php
+    $temp = 0;
+    foreach($asktypes as $asktype)
+    {
+        if($asktype['reid'] == 0){
+        if($cfg_ask_rewrite == 'Y') $url= $asktype['id'];
+        else $url='?ct=browser&tid='.$asktype['id'];
+            if($temp > 0) echo '</ul></div><div class="classes_bottom"></div></div>';
+    ?>
+      <div class="classes mt10">
+        <div class="classes_top">
+          <span class="fl"><a href="<?php echo $url;?>"><?php echo $asktype['name'];?></a> (<?php echo $asktype['asknum'];?>)</span>
+        </div>
+        <div class="classes_bg">
+          <ul>
+	<?php 
+    $temp++;
+	}else{
+    	if($cfg_ask_rewrite == 'Y') $url= 't'.$asktype['id'];
+        else $url='?ct=browser&tid2='.$asktype['id'];
+    ?>
+            <li><a href="<?php echo $url;?>"><?php echo $asktype['name'];?><span>(<?php echo $asktype['asknum'];?>)</span></a></li>
+	<?php }} echo '</ul></div><div class="classes_bottom"></div></div>';?>
+    </div>
+<div class="fr col2">
+  <div class="bor1 rank bg1 mt10">
+<h3>总积分排行</h3>
+        <ul>
+          <?php
+             if($memberlists != ""){
+                foreach($memberlists as $key => $v)
+                {
+             ?>
+          <li><a href="?ct=myask&ac=view&mid=<?php echo $v['mid'];?>" target="_blank"><?php echo $v['userid'];?></a><span class="ico5"><?php echo $v['scores'];?></span></li>
+          <?php }}?>
+        </ul>
+      </div>
+    </div>
+  </div><!--main end-->
+  <?php include(DEDEASK."/templates/default/footer.htm"); ?>
+</div>
+</body>
+</html>

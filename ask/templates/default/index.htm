@@ -1,0 +1,156 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=<?php echo $cfg_soft_lang;?>" />
+<title><?php echo $cfg_ask_sitename;?></title>
+<link href="static/style/service.css" rel="stylesheet" type="text/css" media="screen" />
+<script src="static/js/j.js" type="text/javascript"></script>
+<script src="static/js/jquery.smallslider.js" type="text/javascript"></script>
+<script type="text/javascript">
+$(document).ready(function(){
+    $('.slider').smallslider({
+        onImageStop:true,
+        switchEffect:'ease',switchEase: 'easeOutSine',
+        switchPath: 'left',switchMode: 'hover',
+        showText:true,textSwitch:2
+    });
+});
+ </script>
+</head>
+<body>
+<div id="wrap">
+  <?php include(DEDEASK."/templates/default/header.htm"); ?>
+  <div class="subnav"><span class="fl">已解决问题：<strong><?php echo $solvenum['solved']; ?></strong>未解决问题：<strong><?php echo $solvenum['solving']; ?></strong></span></div>
+  <div id="main" class="mt10">
+    <div class="fl side1">
+      <div class="sort bg1 bor1">
+         <h2>所有问题分类</h2>
+         <?php
+            $temp = 0;
+            foreach($asktypes as $asktype)
+            {
+                if($asktype['reid'] == 0) {
+                    if($temp > 0) echo "</dd></dl>\n";
+                    if($cfg_ask_rewrite == 'Y') $url= $asktype['id'];
+                    else $url='?ct=browser&tid='.$asktype['id'];
+                    echo '<dl><dt><a href="'.$url.'">'.$asktype['name'].'</a></dt><dd>';
+                    $temp++;
+                } else {
+                 	if($cfg_ask_rewrite == 'Y') $url= 't'.$asktype['id'];
+                    else $url='?ct=browser&tid2='.$asktype['id'];
+                    echo '<a href="'.$url.'">'.$asktype['name'].'</a>';
+                }
+            }
+            echo "</dd></dl>\n";
+        ?>
+      </div>
+      <div class="mt10"><a href="http://site.desdev.cn/"><img src="static/images/ad1.jpg" height="60" width="196" /></a></div>
+    </div>
+    <div class="fr bor1 main_top">
+       <div class="fl slider smallslider">
+	     <ul>
+         <?php
+            foreach($row as $key => $val)
+            {
+				if($val['pic'] == '') continue;
+                else echo '<li><a href="'.$val['url'].'" title="'.$val['description'].'" target="_blank"><img src="'.$cfg_ask_basehost.$val['pic'].'" height="180" width="252" alt="'.$val['description'].'" /></a></li>';
+			}
+          ?>
+         </ul>
+	   </div>
+       <div class="fl recommend_problem">
+         <div class="tit1"><span class="fl">推荐问题</span><script type="text/javascript" src="js/date.js"></script></div>
+        <?php
+         if($digests != ""){
+         	foreach($digests as $key => $v)
+         	{
+         	    if($key == 0){
+        ?>
+         <h3><a href="<?php echo $v['qurl'];?>" title="<?php echo cn_substr($v['title'],40);?>"><?php echo cn_substr($v['title'],38);?></a></h3>
+         <ul class="pd10">
+        <?php }else{ ?>
+           <li><a href="<?php echo $v['qurl'];?>" title="<?php echo cn_substr($v['title'],40);?>"><?php echo cn_substr($v['title'],38);?></a><?php echo $v['userid'];?></li>
+        <?php }}} ?>
+         </ul>
+       </div>
+       <div class="fr">
+         <ul>
+           <li><img src="static/images/link3.jpg" height="120" width="196" /></li>
+           <li><a href="http://service.dedecms.com" target="_blank"><img src="static/images/ad2.jpg" height="60" width="196" /></a></li>
+         </ul>
+       </div>
+    </div>
+    <div class="fl center mt10 ml10">
+      <dl>
+        <dt><span class="fl tit2 ico2">待解决问题</span><span class="fr more"><a href="?ct=browser&lm=2" title="更多">更多...</a></span></dt>
+        <dd class="bor1 pd10">
+          <ul>
+             <?php
+             if($notoks != ""){
+             	foreach($notoks as $key => $v){
+             ?>
+            <li><?php if($v['reward'] > 0){ ?><span class="fl ico3"><?php echo $v['reward'];}?></span><a href="<?php echo $v['qurl'];?>"><?php echo cn_substr($v['title'],50);?></a><?php echo $v['replies'];?>回答</li>
+            <?php }}?> 
+          </ul>
+        </dd>
+      </dl>
+      <dl class="mt10">
+        <dt><span class="fl tit2 ico4">高悬赏问题</span><span class="fr more"><a href="?ct=browser&lm=4" title="更多">更多...</a></span></dt>
+        <dd class="bor1 pd10">
+          <ul>
+            <?php
+             if($rewards != ""){
+             	foreach($rewards as $key => $v)
+             	{
+             ?>
+            <li><?php if($v['reward'] > 0){ ?><span class="fl ico3"><?php echo $v['reward'];}?></span><a href="<?php echo $v['qurl'];?>"><?php echo cn_substr($v['title'],50);?></a><?php echo $v['replies'];?>回答</li>
+            <?php }}?> 
+          </ul>
+        </dd>
+      </dl>
+      <dl class="mt10">
+        <dt><span class="fl tit2 ico4">新解决问题</span><span class="fr more"><a href="?ct=browser&lm=3" title="更多">更多...</a></span></dt>
+        <dd class="bor1 pd10">
+          <ul>
+            <?php
+             if($solutions != ""){
+             	foreach($solutions as $key => $v)
+             	{
+             ?>
+            <li><?php if($v['reward'] > 0){ ?><span class="fl ico3"><?php echo $v['reward'];}?></span><a href="<?php echo $v['qurl'];?>"><?php echo cn_substr($v['title'],50);?></a><?php echo $v['replies'];?>回答</li>
+            <?php }}?> 
+          </ul>
+        </dd>
+      </dl>
+    </div>
+    <div class="fr side1 mt10">
+      <div class="bor1 rank bg1">
+        <h3>周积分上升排行</h3>
+        <ul>
+           <?php
+             if($memberweeklists != ""){
+                foreach($memberweeklists as $key => $v)
+                {
+             ?>
+          <li><a href="?ct=myask&ac=view&mid=<?php echo $v['mid'];?>" target="_blank"><?php echo $v['userid'];?></a><span class="ico5"><?php echo $v['mscores'];?></span></li>
+          <?php }}?>
+        </ul>
+      </div>
+      <div class="bor1 rank bg1 mt10">
+        <h3>总积分排行</h3>
+        <ul>
+          <?php
+             if($memberlists != ""){
+                foreach($memberlists as $key => $v)
+                {
+             ?>
+          <li><a href="?ct=myask&ac=view&mid=<?php echo $v['mid'];?>" target="_blank"><?php echo $v['userid'];?></a><span class="ico5"><?php echo $v['scores'];?></span></li>
+          <?php }}?>
+        </ul>
+      </div>
+    </div>
+  </div><!--main end-->
+  <?php include(DEDEASK."/templates/default/footer.htm"); ?>
+</div>
+</body>
+</html>

@@ -1,0 +1,65 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>问答分类</title>
+<meta http-equiv="Content-Type" content="text/html; charset=<?php echo $cfg_soft_lang;?>">
+<link href="static/style/admin.css" rel="stylesheet" type="text/css" />
+<link href="static/style/tb-box.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="static/js/j.js"></script>
+<script type="text/javascript" src="static/js/box.js"></script>
+<script type="text/javascript">
+function del(id)
+{
+    if(id <= 0)
+    {
+        var msg = "没有选择正确信息";
+		msg += "<br/><a href='javascript:tb_remove();'>&lt;&lt;点错了</a> &nbsp;";
+		tb_showmsg(msg);  
+    }else{
+        var msg = "<font color='red'>删除分类时将删除该分类的所有下级分类，且不能恢复操作，请确认删除！</font>";
+        msg += "<br/><a href='javascript:tb_remove();'>&lt;&lt;点错了</a> &nbsp;|&nbsp; <a href='?ct=asktype&ac=delete&id="+id+"'>确定要删除&gt;&gt;</a>";
+    }
+    
+    tb_showmsg(msg);
+}
+</script>
+</head>
+<body background='img/allbg.gif' leftmargin='8' topmargin='8'>
+<div class="bodytitle">
+	<div class="bodytitleleft"></div>
+    <div class="bodytitletxt"  style="padding-left:10px;"><b>问答模块</b> -- 问答分类管理</div>
+</div>
+<form name="form3" action="?ct=asktype&ac=update" method="post">
+<table width="98%" border="0" cellpadding="0" cellspacing="1" align="center" style="background:#cfcfcf;">
+      <tr>
+        <td height="26" bgcolor="#EDF9D5" background="static/images/tbg.gif" style="padding-left:10px;"><strong style="float:left;">&nbsp;编辑分类</strong><span style="float:right;padding-right:10px;"><a href='?ct=asktype&ac=add&amp&height=200&amp;width=450' class="thickbox">增加分类</a></span></td>
+    </tr>
+      <tr>
+        <td>
+        <table width="100%" border="0" cellpadding="0" cellspacing="1" align="center" style="margin:0px auto;background:#ffffff;">
+          <tr height="25" bgcolor="#FBFCE2" >
+            <td width="5%" align="center">id</td>
+            <td>分类名称</td>
+            <td width="5%">排序</td>
+            <td width="20%" align="center">管理操作</td>
+          </tr>
+         <?php
+         foreach($asktypes as $asktype){
+         ?>
+          <tr>
+                <td  align="center"><?php echo $asktype['id'];?></td>
+                <td><?php echo $asktype['name'];?></td>
+                <td><input type="text" name="disorders[<?php echo $asktype['id'];?>]" value="<?php echo $asktype['disorder'];?>" /></td>
+                <td align="center"><a href="?ct=asktype&ac=add&name=<?php echo $asktype['name'];?>&id=<?php echo $asktype['id'];?>&amp&height=200&amp;width=450" class="thickbox">添加子类</a> <a href='?ct=asktype&ac=edit&amp;id=<?php echo $asktype['id'];?>&height=200&amp;width=450' class="thickbox">修改</a> <a href='#' onClick="javascript:del(<?php echo $asktype['id'];?>)">删除</a></td>
+          </tr>
+         <?php if(!empty($asktype['son'])) echo $asktype['son']; }?>
+        </table> 
+       </td>
+      </tr>
+      <tr>
+        <td height="30" style="padding-right:10px;" align="right" bgcolor="#F8FCF1"><input name="submit3" type="submit" value="更新排序" class="np coolbg"/></td>
+      </tr>
+    </table>
+</form>
+</body>
+</html>

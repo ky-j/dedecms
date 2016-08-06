@@ -1,0 +1,35 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=<?php echo $cfg_soft_lang;?>" />
+<title>推荐答案-<?php echo $cfg_ask_sitename;?></title>
+<link href="static/style/service.css" rel="stylesheet" type="text/css" media="screen" />
+</head>
+<body>
+<div id="wrap">
+  <?php include(DEDEASK."/templates/default/header.htm"); ?>
+  <div class="subnav"><span class="fl place"><?php echo $cfg_ask_position;?><a href="#">查看推荐答案</a></span></div>
+  <div id="main">
+    <div class="post_box bor1 mt10">
+      <h2 class="step2"></h2>
+      <div class="mt10 post_content">
+        <div class="post_step2">
+           <h3>请查看下面的问题是否解决了您的疑问：<img src="static/images/best.gif" alt="已被解决"/><span class="c3"> 代表已解决</span></h3>
+           <?php foreach($searchs as $key => $v){?>
+           <dl>
+             <dt><a href="?ct=question&askaid=<?php echo $v['id'];?>"><?php echo $v['title'];?></a> <?php if($v['bestanswer'] > 0){?><img src="static/images/best.gif" alt="已被解决"/><?php }?></dt>
+             <dd><?php echo $v['content'];?>...</dd>
+           </dl>
+           <?php }?>
+        </div>        
+      </div>
+      <form action="?ct=question&ac=ask_complete" method="post" name="ask">
+	  <input type="hidden" name="title" value="<?php echo $title; ?>" />   
+      <div><input name="sum" type="submit"  class="ml10 mt10 post_btn2"/></div>  
+      </form> 
+    </div>
+  </div><!--main end-->
+  <?php include(DEDEASK."/templates/default/footer.htm"); ?>
+</div>
+</body>
+</html>

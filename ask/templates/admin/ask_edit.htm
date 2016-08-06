@@ -1,0 +1,127 @@
+<html>
+<head>
+<meta http-equiv='Content-Type' content='text/html; charset=<?php echo $cfg_soft_lang;?>'>
+<title>修改/查看 -- 问题管理</title>
+<link href='static/style/lurd.css' rel='stylesheet' type='text/css'>
+</head>
+<body>
+<form name='lurdform' action='{dede:server name='PHP_SELF' /}' method='post' enctype="multipart/form-data">
+<input type='hidden' name='ct' value='{dede:global.ct /}' />
+<input type='hidden' name='ac' value='saveedit' />
+<table width="98%" border="0" align="center" cellpadding="0" cellspacing="0">
+  <tr> 
+    <td height="28" style="background:url(/images/lurd/tr-bg.gif);border-left:1px solid #DADADA;border-right:1px solid #DADADA;border-top:1px solid #DADADA;">
+    <table width='96%' cellpadding='0' cellspacing='0'>
+      <tr>
+    	<td width='30%'>&nbsp;<strong>修改/查看 -- 问题管理</strong></td>
+        <td align='right'>&nbsp;</td>
+      </tr>
+     </table>
+	</td>
+  </tr>
+  <tr> 
+    <td height="150" bgcolor="#FFFFFF">
+{dede:datalist}
+    <input type="hidden" name="id" value="{dede:field name='id' /}" />
+
+	<table width="100%" border="0" align="center" cellpadding="3" cellspacing="1" bgcolor="#DCE9AB">
+      <tr bgcolor="#F8FEE0">
+        <td width="20%" height="28" align="center"><strong>字段</strong></td>
+        <td width="80%" align="center"><strong>值</strong></td>
+      </tr>
+          <tr>
+<td height='28' align='center' bgcolor='#FFFFFF'>tid</td>
+<td bgcolor='#FFFFFF'><input type='input' name='tid' class='txtnumber' value='{dede:field name='tid' /}' /></td>
+</tr>
+    <tr>
+<td height='28' align='center' bgcolor='#FFFFFF'>tidname</td>
+<td bgcolor='#FFFFFF'><input type='input' name='tidname' class='txt' value='{dede:field name='tidname' /}' /></td>
+</tr>
+    <tr>
+<td height='28' align='center' bgcolor='#FFFFFF'>tid2</td>
+<td bgcolor='#FFFFFF'><input type='input' name='tid2' class='txtnumber' value='{dede:field name='tid2' /}' /></td>
+</tr>
+    <tr>
+<td height='28' align='center' bgcolor='#FFFFFF'>tid2name</td>
+<td bgcolor='#FFFFFF'><input type='input' name='tid2name' class='txt' value='{dede:field name='tid2name' /}' /></td>
+</tr>
+    <tr>
+<td height='28' align='center' bgcolor='#FFFFFF'>uid</td>
+<td bgcolor='#FFFFFF'><input type='input' name='uid' class='txtnumber' value='{dede:field name='uid' /}' /></td>
+</tr>
+    <tr>
+<td height='28' align='center' bgcolor='#FFFFFF'>anonymous</td>
+<td bgcolor='#FFFFFF'><input type='input' name='anonymous' class='txtnumber' value='{dede:field name='anonymous' /}' /></td>
+</tr>
+    <tr>
+<td height='28' align='center' bgcolor='#FFFFFF'>title</td>
+<td bgcolor='#FFFFFF'><input type='input' name='title' class='txt' value='{dede:field name='title' /}' /></td>
+</tr>
+    <tr>
+<td height='28' align='center' bgcolor='#FFFFFF'>digest</td>
+<td bgcolor='#FFFFFF'><input type='input' name='digest' class='txtnumber' value='{dede:field name='digest' /}' /></td>
+</tr>
+    <tr>
+<td height='28' align='center' bgcolor='#FFFFFF'>reward</td>
+<td bgcolor='#FFFFFF'><input type='input' name='reward' class='txtnumber' value='{dede:field name='reward' /}' /></td>
+</tr>
+    <tr>
+<td height='28' align='center' bgcolor='#FFFFFF'>dateline</td>
+<td bgcolor='#FFFFFF'><input type='input' name='dateline' class='txtnumber' value='{dede:field name='dateline' /}' /></td>
+</tr>
+    <tr>
+<td height='28' align='center' bgcolor='#FFFFFF'>expiredtime</td>
+<td bgcolor='#FFFFFF'><input type='input' name='expiredtime' class='txtnumber' value='{dede:field name='expiredtime' /}' /></td>
+</tr>
+    <tr>
+<td height='28' align='center' bgcolor='#FFFFFF'>solvetime</td>
+<td bgcolor='#FFFFFF'><input type='input' name='solvetime' class='txtnumber' value='{dede:field name='solvetime' /}' /></td>
+</tr>
+    <tr>
+<td height='28' align='center' bgcolor='#FFFFFF'>bestanswer</td>
+<td bgcolor='#FFFFFF'><input type='input' name='bestanswer' class='txtnumber' value='{dede:field name='bestanswer' /}' /></td>
+</tr>
+    <tr>
+<td height='28' align='center' bgcolor='#FFFFFF'>status</td>
+<td bgcolor='#FFFFFF'><input type='input' name='status' class='txtnumber' value='{dede:field name='status' /}' /></td>
+</tr>
+    <tr>
+<td height='28' align='center' bgcolor='#FFFFFF'>disorder</td>
+<td bgcolor='#FFFFFF'><input type='input' name='disorder' class='txtnumber' value='{dede:field name='disorder' /}' /></td>
+</tr>
+    <tr>
+<td height='28' align='center' bgcolor='#FFFFFF'>views</td>
+<td bgcolor='#FFFFFF'><input type='input' name='views' class='txtnumber' value='{dede:field name='views' /}' /></td>
+</tr>
+    <tr>
+<td height='28' align='center' bgcolor='#FFFFFF'>replies</td>
+<td bgcolor='#FFFFFF'><input type='input' name='replies' class='txtnumber' value='{dede:field name='replies' /}' /></td>
+</tr>
+    <tr>
+<td height='28' align='center' bgcolor='#FFFFFF'>ip</td>
+<td bgcolor='#FFFFFF'><input type='input' name='ip' class='txt' value='{dede:field name='ip' /}' /></td>
+</tr>
+    <tr>
+<td height='28' align='center' bgcolor='#FFFFFF'>content</td>
+<td bgcolor='#FFFFFF'><textarea name='content' class='txtarea'>{dede:field name='content' /}</textarea></td>
+</tr>
+    <tr>
+<td height='28' align='center' bgcolor='#FFFFFF'>extra</td>
+<td bgcolor='#FFFFFF'><textarea name='extra' class='txtarea'>{dede:field name='extra' /}</textarea></td>
+</tr>
+
+    </table>
+{/dede:datalist}
+	</td>
+   </tr>
+	<tr> 
+      <td align="center" bgcolor="#F9FCEF" height="43" style="border-left:1px solid #DCE9AB;border-right:1px solid #DCE9AB;border-bottom:1px solid #DCE9AB;">
+	  	<input type="image" name="imageField" src="static/images/lurd/button_save.gif" class='np' /> &nbsp;
+	  	<img src="static/images/lurd/button_reset.gif" width="60" height="22" onClick="document.lurdform.reset();" style="cursor:pointer;" /> &nbsp;
+	  	<img src="static/images/lurd/button_back.gif" width="60" height="22" onClick="history.go(-1);" style="cursor:pointer;" />
+	  </td>
+  </tr>
+</table>
+</form>
+</body>
+</html>

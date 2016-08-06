@@ -1,0 +1,17 @@
+<form name="myform" method="post" action="?ct=question&ac=modifyanswer&amp;id=<?php echo $id;?>">
+    <input type="hidden" name="askaid" value="<?php echo $row['askid'];?>" />
+    <div class="refer margintop">
+      <div class="referbox">
+        <dl>
+          <dt><?php echo $cfg_ml->M_LoginID; ?>，您要修改的答复如下:</dt>
+          <dd>
+           <?php GetFck("content",$row['content'],400);?>
+          </dd>
+        </dl>
+        <div class="psubmit">
+          <input type="submit" value="确定" class="psub" tabindex="6">
+        </div>
+      </div>
+ </div>
+</form>
+
