@@ -36,7 +36,7 @@ echo <<<EOT
 <link href="style.css" rel="stylesheet" type="text/css" />
 <div class="over-link fs-14" style="padding:0px;">
     <a href="../index.php?upcache=1" target='_top'>访问网站首页</a>
-    <a href="../dede" target='_top'>登录网站后台</a>
+    <a href="../console" target='_top'>登录网站后台</a>
 </div>
 EOT;
 ?>
