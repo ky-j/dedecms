@@ -51,7 +51,7 @@ function checkSubmit()
   </td>
 </tr>
 <tr>
-   <td height="30" align="center" bgcolor="#F9FCEF"  colspan="8">
+   <td height="30" align="center" bgcolor="#F9FCEF"  colspan="8"> 
    <form action="friendlink_main.php" name="form1" method="get">
 	  <table border="0" cellspacing="0" cellpadding="3">
       <tr>
@@ -93,7 +93,7 @@ function checkSubmit()
         <tr align="center" bgcolor="#FFFFFF" height="26" onMouseMove="javascript:this.bgColor='#FCFDEE';"
         	 onMouseOut="javascript:this.bgColor='#FFFFFF';">
           <td><input type='checkbox' name='aids' value='{dede:field.id/}' class='np'></td>
-          <td><a href="{dede:field.url/}" target='_blank'>{dede:field.webname function='htmlspecialchars(@me, ENT_NOQUOTES, "gb2312")'/}</a></td>
+          <td><a href="{dede:field.url/}" target='_blank'>{dede:field.webname function='dede_htmlspecialchars(@me)'/}</a></td>
           <td>
           <?php
             $dsql->SetQuery("select * from #@__flinktype where id = '".$fields['typeid']."'");
