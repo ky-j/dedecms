@@ -165,13 +165,13 @@ function lib_arclist( &$ctag, &$refObj )
  * @param     string  $isweight  是否需要对检索出来的内容按照weight排序
  * @return    string
  */
-function lib_arclistDone(&$refObj, &$ctag, $typeid=0, $row=10, $col=1, $titlelen=30, $infolen=160,
+function lib_arclistDone(&$refObj, &$ctag, $typeid=0, $row=10, $col=1, $titlelen=60, $infolen=160,
         $imgwidth=120, $imgheight=90, $listtype='all', $orderby='default', $keyword='',
         $innertext='', $arcid=0, $idlist='', $channelid=0, $limit='', $att='', $order='desc', $subday=0, $noflag='',$tagid='', $pagesize=0, $isweight='N')
 {
     global $dsql,$PubFields,$cfg_keyword_like,$cfg_index_cache,$_arclistEnv,$envs,$cfg_cache_type,$cfg_digg_update;
     $row = AttDef($row,10);
-    $titlelen = AttDef($titlelen,30);
+    $titlelen = AttDef($titlelen,60);
     $infolen = AttDef($infolen,160);
     $imgwidth = AttDef($imgwidth,120);
     $imgheight = AttDef($imgheight,120);
