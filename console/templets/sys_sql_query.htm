@@ -4,6 +4,9 @@
 <meta http-equiv="Content-Type" content="text/html; charset=<?php echo $cfg_soft_lang; ?>">
 <title>SQL命令行工具</title>
 <link href='css/base.css' rel='stylesheet' type='text/css'>
+<link rel="stylesheet" type="text/css" href="css/codemirror.css">
+<script type="text/javascript" src="js/codemirror.js"></script>
+<script type="text/javascript" src="js/mode/sql/sql.js"></script>
 </head>
 <body background='images/allbg.gif' leftmargin='8' topmargin='8'>
 <table width="98%" border="0" align="center" cellpadding="3" cellspacing="1" bgcolor="#D6D6D6">
@@ -84,7 +87,7 @@ while($row = $dsql->GetArray('t',MYSQL_BOTH))
           </tr>
 		      <tr> 
             <td height="118" colspan="2">
-			<textarea name="sqlquery" cols="60" rows="10" id="sqlquery" style="width:90%"></textarea> 
+			<textarea id="sqlquery" name="sqlquery" cols="60" rows="10" id="sqlquery" style="width:90%"></textarea> 
             </td>
           </tr>
           <tr> 
@@ -98,5 +101,12 @@ while($row = $dsql->GetArray('t',MYSQL_BOTH))
 	 </td>
 </tr>
 </table>
+ <script type="text/javascript">
+    var editor = CodeMirror.fromTextArea(document.getElementById('sqlquery'), {
+        lineNumbers: true,
+        lineWrapping: true,
+        mode: 'text/x-mysql'
+    });
+</script>
 </body>
 </html>

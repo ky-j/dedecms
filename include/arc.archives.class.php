@@ -816,8 +816,14 @@ class Archives
             $preRow = $this->dsql->GetOne($query.$pre);
             if(is_array($preRow))
             {
-                $mlink = GetFileUrl($preRow['id'],$preRow['typeid'],$preRow['senddate'],$preRow['title'],$preRow['ismake'],$preRow['arcrank'],
+                if ( defined('DEDEMOB') )
+                {
+                    $mlink = 'view.php?aid='.$preRow['id'];
+                } else {
+                    $mlink = GetFileUrl($preRow['id'],$preRow['typeid'],$preRow['senddate'],$preRow['title'],$preRow['ismake'],$preRow['arcrank'],
                 $preRow['namerule'],$preRow['typedir'],$preRow['money'],$preRow['filename'],$preRow['moresite'],$preRow['siteurl'],$preRow['sitepath']);
+                }
+                
                 $this->PreNext['pre'] = "上一篇：<a href='$mlink'>{$preRow['title']}</a> ";
                 $this->PreNext['preimg'] = "<a href='$mlink'><img src=\"{$preRow['litpic']}\" alt=\"{$preRow['title']}\"/></a> ";
             }
@@ -828,8 +834,14 @@ class Archives
             }
             if(is_array($nextRow))
             {
-                $mlink = GetFileUrl($nextRow['id'],$nextRow['typeid'],$nextRow['senddate'],$nextRow['title'],$nextRow['ismake'],$nextRow['arcrank'],
-                $nextRow['namerule'],$nextRow['typedir'],$nextRow['money'],$nextRow['filename'],$nextRow['moresite'],$nextRow['siteurl'],$nextRow['sitepath']);
+                if ( defined('DEDEMOB') )
+                {
+                    $mlink = 'view.php?aid='.$preRow['id'];
+                } else {
+                    $mlink = GetFileUrl($nextRow['id'],$nextRow['typeid'],$nextRow['senddate'],$nextRow['title'],$nextRow['ismake'],$nextRow['arcrank'],
+                    $nextRow['namerule'],$nextRow['typedir'],$nextRow['money'],$nextRow['filename'],$nextRow['moresite'],$nextRow['siteurl'],$nextRow['sitepath']);
+                }
+    
                 $this->PreNext['next'] = "下一篇：<a href='$mlink'>{$nextRow['title']}</a> ";
                 $this->PreNext['nextimg'] = "<a href='$mlink'><img src=\"{$nextRow['litpic']}\" alt=\"{$nextRow['title']}\"/></a> ";
             }

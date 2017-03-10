@@ -4,6 +4,14 @@ if(!file_exists(dirname(__FILE__).'/../data/common.inc.php'))
     header('Location:install/index.php');
     exit();
 }
+if ( preg_match("#PHP (.*) Development Server#",$_SERVER['SERVER_SOFTWARE']) )
+{
+    if ( $_SERVER['REQUEST_URI'] == dirname($_SERVER['SCRIPT_NAME']) )
+    {
+        header('HTTP/1.1 301 Moved Permanently');
+        header('Location:'.$_SERVER['REQUEST_URI'].'/');
+    }
+}
 //自动生成HTML版
 if(isset($_GET['upcache']) || !file_exists('index.html'))
 {
