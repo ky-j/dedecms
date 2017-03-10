@@ -23,9 +23,9 @@
               <td width='90' align='center'>请选择分类：</td>
               <td width='124'><select name='clsid' style='width:150' id="clsid">
                 <option value='0'>默认分类...</option>
-                
+
           	<?php echo $option;?>
-          
+
               </select></td>
               <td width='71'> 关键字： </td>
               <td width='185'><input type='text' name='keyword' style='width:150' /></td>
@@ -36,7 +36,7 @@
       </tr>
     </table></td>
   </tr>
-  <tr align="center"  bgcolor="#FBFCE2"" height="24"> 
+  <tr align="center"  bgcolor="#FBFCE2"" height="24">
       <td width="8%">编号</td>
       <td width="20%">分类</td>
       <td width="20%">广告名称</td>
@@ -45,9 +45,9 @@
       <td width="11%">结束时间</td>
       <td width="18%">管理</td>
    </tr>
-   
+
    {dede:datalist}
-    <tr align="center" bgcolor="#FFFFFF" height="24" onMouseMove="javascript:this.bgColor='#FCFDEE';" onMouseOut="javascript:this.bgColor='#FFFFFF';"> 
+    <tr align="center" bgcolor="#FFFFFF" height="24" onMouseMove="javascript:this.bgColor='#FCFDEE';" onMouseOut="javascript:this.bgColor='#FFFFFF';">
         <td>{dede:field.aid /}</td>
         <td>{dede:field.clsname function='TestType(@me,1)'/}</td>
         <td>{dede:field.adname /}</td>
@@ -55,13 +55,19 @@
         <td>{dede:field.timeset function='TimeSetValue(@me)'/}</td>
         <td>{dede:field.endtime function='GetDateMk(@me)'/}</td>
         <td>
-         <a href='ad_edit.php?aid={dede:field.aid /}&dopost=gettag'>[代码]</a>
-         <a href='ad_edit.php?aid={dede:field.aid /}&dopost=edit'>[更改]</a>
-		     <a href='ad_edit.php?aid={dede:field.aid /}&dopost=delete'>[删除]</a>
-		    </td>
+            <a href='ad_edit.php?aid={dede:field.aid /}&dopost=gettag'>[代码]</a>
+            <a href='ad_edit.php?aid={dede:field.aid /}&dopost=edit'>[更改]</a>
+            <?php
+                if($cuserLogin->getUserType() >= 10) {
+            ?>
+		    <a href='ad_edit.php?aid={dede:field.aid /}&dopost=delete' onclick='return confirm("确定删除?");'>[删除]</a>
+            <?
+                }
+            ?>
+		</td>
      </tr>
 		{/dede:datalist}
-     <tr align="center" bgcolor="#F9FCEF" height="24"> 
+     <tr align="center" bgcolor="#F9FCEF" height="24">
       <td colspan="7">
       	{dede:pagelist listsize=5/}
       </td>
