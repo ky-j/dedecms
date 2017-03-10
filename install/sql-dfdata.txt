@@ -245,6 +245,7 @@ INSERT INTO `#@__area` VALUES('1','北京市','0','0'),
 ('1221','凉山州','12','0'),
 ('13','陕西省','0','0'),
 ('3114','西安市','13','0'),
+
 ('1302','铜川市','13','0'),
 ('1303','宝鸡市','13','0'),
 ('1304','咸阳市','13','0'),
@@ -4137,3 +4138,4 @@ INSERT INTO `#@__plus` VALUES (27, '友情链接模块', '<m:item name=''友情�
 
 INSERT INTO `#@__sysconfig` (`varname`, `info`, `groupid`, `type`, `value`) VALUES ('cfg_disable_funs', '模板引擎禁用PHP函数', 7, 'bstring', 'phpinfo,eval,exec,passthru,shell_exec,system,proc_open,popen,curl_exec,curl_multi_exec,parse_ini_file,show_source,file_put_contents');
 INSERT INTO `#@__sysconfig` (`varname`, `info`, `groupid`, `type`, `value`) VALUES ('cfg_disable_tags', '模板引擎禁用标签', 7, 'bstring', 'php');
+ALTER TABLE `#@__arctiny` ADD INDEX `idx_typeid_arcrank_sortrank` (`typeid`, `arcrank`, `sortrank`);
