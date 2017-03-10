@@ -20,7 +20,7 @@
 $magic_quotes_gpc = ini_get('magic_quotes_gpc');
 function _FilterAll($fk, &$svar)
 {
-    global $cfg_notallowstr,$cfg_replacestr;
+    global $cfg_notallowstr,$cfg_replacestr,$magic_quotes_gpc;
     if( is_array($svar) )
     {
         foreach($svar as $_k => $_v)

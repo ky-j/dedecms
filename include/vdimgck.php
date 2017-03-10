@@ -47,6 +47,11 @@ function echo_validate_image( $config = array() )
 {
     @session_start();
 
+    if ( !function_exists('imagettftext') )
+    {
+        return false;
+    }
+
     //主要参数
     $font_size   = isset($config['font_size']) ? $config['font_size'] : 14;
     $img_height  = isset($config['img_height']) ? $config['img_height'] : 24;

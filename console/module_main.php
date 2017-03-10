@@ -15,7 +15,7 @@ require_once(dirname(__FILE__)."/../include/oxwindow.class.php");
 if(empty($action)) $action = '';
 require_once(DEDEDATA."/admin/config_update.php");
 $mdir = DEDEDATA.'/module';
-$mdurl = $updateHost.'dedecms/module_'.$cfg_soft_lang.'/modulelist.txt';
+$mdurl = UPDATEHOST.'dedecms/module_'.$cfg_soft_lang.'/modulelist.txt';
 
 function TestWriteAble($d)
 {
@@ -662,7 +662,7 @@ function Download();
 --------------*/
 else if($action=='download')
 {
-	$model_remote_url = $updateHost.'dedecms/module_'.$cfg_soft_lang.'/'.$hash.'.xml';
+	$model_remote_url = UPDATEHOST.'dedecms/module_'.$cfg_soft_lang.'/'.$hash.'.xml';
 	$model_remote = file_get_contents($model_remote_url);
 	file_put_contents($mdir.'/'.$hash.'.xml',$model_remote);
 	echo "未安装 <a href='module_main.php?action=setup&hash={$hash}'><u>安装</u></a>";

@@ -25,7 +25,10 @@ if(empty($f))
 {
     $f='form1.enclosure';
 }
-
+if (!is_dir($inpath) )
+{
+    die('No Exsits Path');
+}
 if(empty($comeback))
 {
     $comeback = '';

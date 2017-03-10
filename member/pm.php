@@ -62,6 +62,7 @@ else if($dopost=='read')
     while ($row = $dsql->GetArray()) {
         $friends[] = $row;
     }
+    $id = intval($id);
     $row = $dsql->GetOne("SELECT * FROM `#@__member_pms` WHERE id='$id' AND (fromid='{$cfg_ml->M_ID}' OR toid='{$cfg_ml->M_ID}')");
     if(!is_array($row))
     {

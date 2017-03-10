@@ -32,9 +32,16 @@ $cfg_remote_site = empty($cfg_remote_site)? 'N' : $cfg_remote_site;
 
 //检验用户登录状态
 $cuserLogin = new userLogin();
+
 if($cuserLogin->getUserID()==-1)
 {
-    header("location:login.php?gotopage=".urlencode($dedeNowurl));
+    if ( preg_match("#PHP (.*) Development Server#",$_SERVER['SERVER_SOFTWARE']) )
+    {
+        $dirname = dirname($_SERVER['SCRIPT_NAME']);
+        header("location:{$dirname}/login.php?gotopage=".urlencode($dedeNowurl));
+    } else {
+        header("location:login.php?gotopage=".urlencode($dedeNowurl));
+    }
     exit();
 }
 

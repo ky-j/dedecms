@@ -89,8 +89,14 @@ $gourl = empty($gourl)? "" : RemoveXSS($gourl);
 //检查是否开放会员功能
 if($cfg_mb_open=='N')
 {
-    ShowMsg("系统关闭了会员功能，因此你无法访问此页面！","javascript:;");
-    exit();
+    if ( defined( 'AJAXLOGIN' ) )
+    {
+        die('');
+    } else {
+        ShowMsg("系统关闭了会员功能，因此你无法访问此页面！","javascript:;");
+        exit();
+    }
+
 }
 $keeptime = isset($keeptime) && is_numeric($keeptime) ? $keeptime : -1;
 $cfg_ml = new MemberLogin($keeptime);

@@ -23,6 +23,10 @@ if(strlen($activepath) < strlen($cfg_other_medias))
 }
 $inpath = $cfg_basedir.$activepath;
 $activeurl = '..'.$activepath;
+if (!is_dir($inpath) )
+{
+    die('No Exsits Path');
+}
 if(empty($f))
 {
     $f = 'form1.enclosure';

@@ -14,8 +14,9 @@ $verMsg = ' V5.7 UTF8SP1';
 $s_lang = 'utf-8';
 $dfDbname = 'dedecmsv57utf8sp1';
 $errmsg = '';
-$install_demo_name = 'dedev57demo.txt';
-$insLockfile = dirname(__FILE__).'/install_lock.txt';
+define('INSTALL_DEMO_NAME', 'dedev57demo.txt');
+define('INSLOCKFILE', dirname(__FILE__).'/install_lock.txt');
+
 $moduleCacheFile = dirname(__FILE__).'/modules.tmp.inc';
 
 define('DEDEINC',dirname(__FILE__).'/../include');
@@ -33,7 +34,7 @@ foreach(Array('_GET','_POST','_COOKIE') as $_request)
 
 require_once(DEDEINC.'/common.func.php');
 
-if(file_exists($insLockfile))
+if(file_exists(INSLOCKFILE))
 {
     exit(" 程序已运行安装，如果你确定要重新安装，请先从FTP中删除 install/install_lock.txt！");
 }
@@ -113,7 +114,7 @@ else if($step==3)
         $rnd_cookieEncode .= $chars[mt_rand(0, $max)];
     }
     $isdemosign = 0;
-    if(file_exists($install_demo_name) && file_get_contents($install_demo_name)) $isdemosign = 1;
+    if(file_exists(INSTALL_DEMO_NAME) && file_get_contents(INSTALL_DEMO_NAME)) $isdemosign = 1;
     $module_local = DEDEDATA.'/module/';
     include('./templates/step-3.html');
     exit();
@@ -278,7 +279,7 @@ else if($step==4)
 	//安装体验数据
     if($installdemo == 1)
     {
-        if($setupsql = file_get_contents($install_demo_name))
+        if($setupsql = file_get_contents(INSTALL_DEMO_NAME))
 		{
 			$setupsql = preg_replace("#ENGINE=MyISAM#i", 'TYPE=MyISAM', $setupsql);
 			$sql41tmp = 'ENGINE=MyISAM DEFAULT CHARSET='.$cfg_db_language;
@@ -371,10 +372,9 @@ else if($step==10)
 else if($step==11)
 {
 	require_once('../data/admin/config_update.php');
-	$rmurl = $updateHost."dedecms/demodata.{$s_lang}.txt";
-
+	$rmurl = UPDATEHOST."dedecms/demodata.{$s_lang}.txt";
 	$sql_content = file_get_contents($rmurl);
-	$fp = fopen($install_demo_name,'w');
+	$fp = fopen(INSTALL_DEMO_NAME,'w');
 	if(fwrite($fp,$sql_content))
 		echo '&nbsp; <font color="green">[√]</font> 存在(您可以选择安装进行体验)';
 	else

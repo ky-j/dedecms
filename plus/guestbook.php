@@ -56,6 +56,7 @@ else if($action=='save')
         $row = $dsql->GetOne("SELECT msg FROM `#@__guestbook` WHERE id='$reid' ");
         $msg = "<div class=\\'rebox\\'>".addslashes($row['msg'])."</div>\n".$msg;
     }
+    $msg = addslashes($msg);
 
     $query = "INSERT INTO `#@__guestbook`(title,tid,mid,uname,email,homepage,qq,face,msg,ip,dtime,ischeck)
                   VALUES ('$title','$tid','{$g_mid}','$uname','$email','$homepage','$qq','$img','$msg','$ip','$dtime','$needCheck'); ";

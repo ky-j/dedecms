@@ -65,7 +65,7 @@ function _RunMagicQuotes(&$svar)
         }
         else
         {
-            if( strlen($svar)>0 && preg_match('#^(cfg_|GLOBALS|_GET|_POST|_COOKIE)#',$svar) )
+            if( strlen($svar)>0 && preg_match('#^(cfg_|GLOBALS|_GET|_POST|_COOKIE|_SESSION)#',$svar) )
             {
               exit('Request var not allow!');
             }
