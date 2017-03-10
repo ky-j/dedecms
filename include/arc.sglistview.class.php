@@ -298,7 +298,7 @@ class SgListView
             return $reurl;
         }
 
-        //$this->CountRecord();
+        if(empty($this->TotalResult)) $this->CountRecord();
         //初步给固定值的标记赋值
         $this->ParseTempletsFirst();
         $totalpage = ceil($this->TotalResult/$this->PageSize);
