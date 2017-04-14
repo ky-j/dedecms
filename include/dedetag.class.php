@@ -120,13 +120,17 @@ class DedeTagParse
         {
             $this->IsCache = FALSE;
         }
+        if ( DEDE_ENVIRONMENT == 'development' )
+        {
+            $this->IsCache = FALSE;
+        }
         $this->NameSpace = 'dede';
         $this->TagStartWord = '{';
         $this->TagEndWord = '}';
         $this->TagMaxLen = 64;
         $this->CharToLow = TRUE;
         $this->SourceString = '';
-        $this->CTags = Array();
+        $this->CTags = array();
         $this->Count = -1;
         $this->TempMkTime = 0;
         $this->CacheFile = '';
@@ -162,7 +166,7 @@ class DedeTagParse
     function SetDefault()
     {
         $this->SourceString = '';
-        $this->CTags = '';
+        $this->CTags = array();
         $this->Count=-1;
     }
     
@@ -279,6 +283,7 @@ class DedeTagParse
                 if(isset($v[4]) && is_array($v[4]))
                 {
                     $i = 0;
+                    $ctag->CAttribute->Items = array();
                     foreach($v[4] as $k=>$v)
                     {
                         $ctag->CAttribute->Count++;
@@ -330,6 +335,7 @@ class DedeTagParse
                 fwrite($fp,"\$z[$tid]={$arrayValue}\n");
                 if(is_array($ctag->CAttribute->Items))
                 {
+                    fwrite($fp,"\$z[$tid][4]=array();\n");
                     foreach($ctag->CAttribute->Items as $k=>$v)
                     {
                         $v = str_replace("\\","\\\\",$v);
@@ -1145,6 +1151,7 @@ class DedeAttributeParse
         $ddtag = '';
         $hasAttribute=FALSE;
         $strLen = strlen($this->sourceString);
+        $this->cAttributes->Items = array();
 
         // 获得Tag的名称，解析到 cAtt->GetAtt('tagname') 中
         for($i=0; $i<$strLen; $i++)

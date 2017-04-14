@@ -635,6 +635,7 @@ class DedeTemplate
         $t = 0;
         $preTag = '';
         $tswLen = strlen($tagStartWord);
+        $cAtt->cAttributes->items = array();
         for($i=0; $i<$sourceLen; $i++)
         {
             $ttagName = '';
@@ -1371,6 +1372,7 @@ class TagAttributeParse
         $ddtag = '';
         $hasAttribute=FALSE;
         $strLen = strlen($this->sourceString);
+        $this->cAttributes->items = array();
 
         // 获得Tag的名称，解析到 cAtt->GetAtt('tagname') 中
         for($i=0; $i<$strLen; $i++)

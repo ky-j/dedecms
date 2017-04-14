@@ -7,10 +7,18 @@
  * @link           http://www.dedecms.com
  */
 
-// 报错级别设定,一般在开发环境中用E_ALL,这样能够看到所有错误提示
-// 系统正常运行后,直接设定为E_ALL || ~E_NOTICE,取消错误显示
-//error_reporting(E_ALL);
-error_reporting(E_ALL || ~E_NOTICE);
+
+
+// 生产环境使用production
+define('DEDE_ENVIRONMENT', 'production');
+
+
+if ( DEDE_ENVIRONMENT == 'production' )
+{
+    error_reporting(E_ALL || ~E_NOTICE);
+} else {
+    error_reporting(E_ALL);
+}
 define('DEDEINC', str_replace("\\", '/', dirname(__FILE__) ) );
 define('DEDEROOT', str_replace("\\", '/', substr(DEDEINC,0,-8) ) );
 define('DEDEDATA', DEDEROOT.'/data');
