@@ -171,6 +171,7 @@ else if($dopost == 'bind_user')
         ShowMsg("填写正确的账号信息！",-1);
         exit();
     }
+    if($cfg_soft_lang=='gb2312') $channel_name = gb2utf8($channel_name);
     $paramsArr=array(
         'email'=>$email, 
         'password'=>$pwd,

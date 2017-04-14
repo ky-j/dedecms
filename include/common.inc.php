@@ -87,7 +87,7 @@ if (!defined('DEDEREQUEST'))
             }
         } else
         {
-            if( strlen($val)>0 && preg_match('#^(cfg_|GLOBALS|_GET|_POST|_COOKIE)#',$val)  )
+            if( strlen($val)>0 && preg_match('#^(cfg_|GLOBALS|_GET|_POST|_COOKIE|_SESSION)#',$val)  )
             {
                 exit('Request var not allow!');
             }
@@ -142,6 +142,11 @@ if($_FILES)
 
 //数据库配置文件
 require_once(DEDEDATA.'/common.inc.php');
+
+if ( !isset($cfg_dbtype)  )
+{
+    $cfg_dbtype = 'mysql';
+}
 
 //载入系统验证安全配置
 if(file_exists(DEDEDATA.'/safe/inc_safe_config.php'))
@@ -328,12 +333,18 @@ function __autoload($classname)
 }
 
 //引入数据库类
-if ($GLOBALS['cfg_mysql_type'] == 'mysqli' && function_exists("mysqli_init") || !function_exists('mysql_connect'))
+if ( $GLOBALS['cfg_dbtype'] =='mysql' )
 {
-    require_once(DEDEINC.'/dedesqli.class.php');
+    if ($GLOBALS['cfg_mysql_type'] == 'mysqli' && function_exists("mysqli_init") || !function_exists('mysql_connect'))
+    {
+        require_once(DEDEINC.'/dedesqli.class.php');
+    } else {
+        require_once(DEDEINC.'/dedesql.class.php');
+    }
 } else {
-    require_once(DEDEINC.'/dedesql.class.php');
+    require_once(DEDEINC.'/dedesqlite.class.php');
 }
+    
 
 
 //全局常用函数

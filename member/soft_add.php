@@ -148,6 +148,7 @@ VALUES ('$arcID','$typeid','$sortrank','$flag','$ismake','$channelid','$arcrank'
     //软件链接列表
     $softurl1 = stripslashes($softurl1);
     $softurl1 = str_replace(array("{dede:","{/dede:","}"), "#", $softurl1);
+    $servermsg1 = str_replace(array("{dede:","{/dede:","}"), "#", $servermsg1);
     $urls = '';
     if($softurl1!='')
     {
@@ -160,6 +161,7 @@ VALUES ('$arcID','$typeid','$sortrank','$flag','$ismake','$channelid','$arcrank'
             $servermsg = str_replace("'","",stripslashes(${'servermsg'.$i}));
             $softurl = stripslashes(${'softurl'.$i});
 			$softurl = str_replace(array("{dede:","{/dede:","}"), "#", $softurl);
+			$servermsg = str_replace(array("{dede:","{/dede:","}"), "#", $servermsg);
             if($servermsg=='')
             {
                 $servermsg = '下载地址'.$i;
