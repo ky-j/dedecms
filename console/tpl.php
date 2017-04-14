@@ -88,6 +88,10 @@ function save_tpl() { }
 --------------------------*/
 else if($action == 'saveedit')
 {
+    if ( empty(${$_csrf['name']}) OR $_csrf['hash'] !== ${$_csrf['name']})
+    {
+        exit('Error:no csrf hash code!');
+    }
     if($filename == '')
     {
         ShowMsg('未指定要编辑的文件或文件名不合法', '-1');
@@ -244,6 +248,10 @@ function savetagfile() { }
 --------------------------*/
 else if($action=='savetagfile')
 {
+    if ( empty(${$_csrf['name']}) OR $_csrf['hash'] !== ${$_csrf['name']})
+    {
+        exit('Error:no csrf hash code!');
+    }
     if(!preg_match("#^[a-z0-9_-]{1,}\.lib\.php$#i", $filename))
     {
         ShowMsg('文件名不合法，不允许进行操作！', '-1');

@@ -108,12 +108,12 @@ if(!isset($dopost) || empty($dopost)){
             ShowMsg("请选择配送方式！","-1");
             exit();
         }
-        $address     = cn_substrR(trim($address),200);
-        $des             = cn_substrR($des,100);
-        $postname = cn_substrR(trim($postname),15);
+        $address     = cn_substrR(trim(RemoveXSS($address)),200);
+        $des             = cn_substrR(RemoveXSS($des),100);
+        $postname = cn_substrR(trim(RemoveXSS($postname)),15);
         $tel            = preg_replace("#[^-0-9,\/\| ]#", "", $tel);
         $zip            = preg_replace("#[^0-9]#", "", $zip);
-        $email        = cn_substrR($email,255);
+        $email        = cn_substrR(RemoveXSS($email),255);
         if(empty($tel))
         {
             ShowMsg("请填写正确的收货人联系电话！","-1");

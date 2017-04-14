@@ -21,6 +21,21 @@ if(file_exists(DEDEDATA.'/admin/skin.txt'))
 	$skin = file_get_contents(DEDEDATA.'/admin/skin.txt');
 	$cfg_admin_skin = !in_array($skin, array(1,2,3,4))? 1 : $skin;
 }
+$_csrf_name = '_csrf_name_'.substr(md5(md5($cfg_cookie_encode)),0,8);
+$_csrf_hash =  GetCookie($_csrf_name);
+if ( empty($_csrf_hash) )
+{
+    $_csrf_hash = md5(uniqid(mt_rand(), TRUE));
+    if (strtoupper($_SERVER['REQUEST_METHOD']) !== 'POST')
+    {
+        PutCookie($_csrf_name, $_csrf_hash, 7200, '/');
+    }
+}
+
+$_csrf =  array(
+    'name'  =>'_dede'.$_csrf_name,
+    'hash'  => $_csrf_hash,
+);
 
 //获得当前脚本名称，如果你的系统被禁用了$_SERVER变量，请自行更改这个选项
 $dedeNowurl = $s_scriptName = '';
