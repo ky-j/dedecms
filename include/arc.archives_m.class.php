@@ -3,11 +3,7 @@ if(!defined('DEDEINC')) exit("Request Error!");
 /**
  * 文档类
  *
- * @version        $Id: arc.archives.class.php 4 15:13 2010年7月7日Z tianya $
- * @package        DedeCMS.Libraries
- * @copyright      Copyright (c) 2007 - 2010, DesDev, Inc.
- * @license        http://help.dedecms.com/usersguide/license.html
- * @link           http://www.dedecms.com
+ * @version        $Id: arc.archives_m.class.php 2017-04-14 julisky $
  */
 require_once(DEDEINC."/typelink.class.php");
 require_once(DEDEINC."/channelunit.class.php");
@@ -348,7 +344,7 @@ class Archives
      * @param     int    $isremote  是否远程
      * @return    string
      */
-    function MakeHtml($isremote=0,$m=0)
+    function MakeHtml($isremote=0)
     {
         global $cfg_remote_site,$fileFirst;
         if($this->IsError)
@@ -357,7 +353,7 @@ class Archives
         }
         $this->Fields["displaytype"] = "st";
         //预编译$th
-        $this->LoadTemplet($m);
+        $this->LoadTemplet();
         $this->ParAddTable();
         $this->ParseTempletsFirst();
         $this->Fields['senddate'] = empty($this->Fields['senddate'])? '' : $this->Fields['senddate'];
@@ -371,7 +367,7 @@ class Archives
         $filename = GetFileNewName(
             $this->ArcID,$this->Fields['typeid'],$this->Fields['senddate'],
             $this->Fields['title'],$this->Fields['ismake'],$this->Fields['arcrank'],
-            ($m?'m/':'').$this->TypeLink->TypeInfos['namerule'],$this->TypeLink->TypeInfos['typedir'],$this->Fields['money'],$this->Fields['filename']
+            'm/'.$this->TypeLink->TypeInfos['namerule'],$this->TypeLink->TypeInfos['typedir'],$this->Fields['money'],$this->Fields['filename']
         );
 
         $filenames  = explode(".", $filename);
@@ -614,11 +610,11 @@ class Archives
      * @access    public
      * @return    void
      */
-    function LoadTemplet($m=0)
+    function LoadTemplet()
     {
-		if($m){
-			$pathinfo = pathinfo($this->GetTempletFile());
-			$tempfile = $pathinfo[dirname].'/'.basename($pathinfo[basename],'.htm').'_m.htm';	
+        if($this->TempSource=='')
+        {
+            $tempfile = $this->GetTempletFile();
             if(!file_exists($tempfile) || !is_file($tempfile))
             {
                 echo "文档ID：{$this->Fields['id']} - {$this->TypeLink->TypeInfos['typename']} - {$this->Fields['title']}<br />";
@@ -627,24 +623,11 @@ class Archives
             }
             $this->dtp->LoadTemplate($tempfile);
             $this->TempSource = $this->dtp->SourceString;
-		}else{
-			if($this->TempSource=='')
-			{
-				$tempfile = $this->GetTempletFile();
-				if(!file_exists($tempfile) || !is_file($tempfile))
-				{
-					echo "文档ID：{$this->Fields['id']} - {$this->TypeLink->TypeInfos['typename']} - {$this->Fields['title']}<br />";
-					echo "模板文件不存在，无法解析文档！";
-					exit();
-				}
-				$this->dtp->LoadTemplate($tempfile);
-				$this->TempSource = $this->dtp->SourceString;
-			}
-			else
-			{
-				$this->dtp->LoadSource($this->TempSource);
-			}
-		}
+        }
+        else
+        {
+            $this->dtp->LoadSource($this->TempSource);
+        }
     }
 
     /**
@@ -836,7 +819,7 @@ class Archives
                     $mlink = GetFileUrl($preRow['id'],$preRow['typeid'],$preRow['senddate'],$preRow['title'],$preRow['ismake'],$preRow['arcrank'],
                 $preRow['namerule'],$preRow['typedir'],$preRow['money'],$preRow['filename'],$preRow['moresite'],$preRow['siteurl'],$preRow['sitepath']);
                 }
-                
+
                 $this->PreNext['pre'] = "上一篇：<a href='$mlink'>{$preRow['title']}</a> ";
                 $this->PreNext['preimg'] = "<a href='$mlink'><img src=\"{$preRow['litpic']}\" alt=\"{$preRow['title']}\"/></a> ";
             }
@@ -854,7 +837,7 @@ class Archives
                     $mlink = GetFileUrl($nextRow['id'],$nextRow['typeid'],$nextRow['senddate'],$nextRow['title'],$nextRow['ismake'],$nextRow['arcrank'],
                     $nextRow['namerule'],$nextRow['typedir'],$nextRow['money'],$nextRow['filename'],$nextRow['moresite'],$nextRow['siteurl'],$nextRow['sitepath']);
                 }
-    
+
                 $this->PreNext['next'] = "下一篇：<a href='$mlink'>{$nextRow['title']}</a> ";
                 $this->PreNext['nextimg'] = "<a href='$mlink'><img src=\"{$nextRow['litpic']}\" alt=\"{$nextRow['title']}\"/></a> ";
             }

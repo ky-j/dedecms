@@ -397,7 +397,8 @@ function MakeArt($aid, $mkindex=FALSE, $ismakesign=FALSE, $isremote=0)
     require_once(DEDEINC.'/arc.archives.class.php');
     if($ismakesign) $envs['makesign'] = 'yes';
     $arc = new Archives($aid);
-    $reurl = $arc->MakeHtml($isremote);
+    $reurl = $arc->MakeHtml($isremote);	
+	$arc->MakeHtml($isremote,1); //生成移动端
     return $reurl;
 }
 
